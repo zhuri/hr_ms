@@ -16,6 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `applicant`
+--
+
+DROP TABLE IF EXISTS `applicant`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `applicant` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `position` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `applicant`
+--
+
+LOCK TABLES `applicant` WRITE;
+/*!40000 ALTER TABLE `applicant` DISABLE KEYS */;
+/*!40000 ALTER TABLE `applicant` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `department`
 --
 
@@ -117,6 +142,59 @@ CREATE TABLE `payroll` (
 LOCK TABLES `payroll` WRITE;
 /*!40000 ALTER TABLE `payroll` DISABLE KEYS */;
 /*!40000 ALTER TABLE `payroll` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `recruitment`
+--
+
+DROP TABLE IF EXISTS `recruitment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `recruitment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status_id` int(11) DEFAULT NULL,
+  `applicant_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `status_id` (`status_id`),
+  KEY `applicant_id` (`applicant_id`),
+  CONSTRAINT `recruitment_ibfk_1` FOREIGN KEY (`status_id`) REFERENCES `recruitment_status` (`id`),
+  CONSTRAINT `recruitment_ibfk_2` FOREIGN KEY (`applicant_id`) REFERENCES `applicant` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `recruitment`
+--
+
+LOCK TABLES `recruitment` WRITE;
+/*!40000 ALTER TABLE `recruitment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `recruitment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `recruitment_status`
+--
+
+DROP TABLE IF EXISTS `recruitment_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `recruitment_status` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `recruitment_status`
+--
+
+LOCK TABLES `recruitment_status` WRITE;
+/*!40000 ALTER TABLE `recruitment_status` DISABLE KEYS */;
+/*!40000 ALTER TABLE `recruitment_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -384,4 +462,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-28 23:41:12
+-- Dump completed on 2019-05-29  0:06:21
