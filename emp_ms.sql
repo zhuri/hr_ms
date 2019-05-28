@@ -28,7 +28,7 @@ CREATE TABLE `applicant` (
   `last_name` varchar(255) DEFAULT NULL,
   `position` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,6 +37,7 @@ CREATE TABLE `applicant` (
 
 LOCK TABLES `applicant` WRITE;
 /*!40000 ALTER TABLE `applicant` DISABLE KEYS */;
+INSERT INTO `applicant` VALUES (1,'betim','sherifi','software dev'),(2,'jehona','konushevci','software dev');
 /*!40000 ALTER TABLE `applicant` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -162,7 +163,7 @@ CREATE TABLE `recruitment` (
   KEY `applicant_id` (`applicant_id`),
   CONSTRAINT `recruitment_ibfk_1` FOREIGN KEY (`status_id`) REFERENCES `recruitment_status` (`id`),
   CONSTRAINT `recruitment_ibfk_2` FOREIGN KEY (`applicant_id`) REFERENCES `applicant` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,6 +172,7 @@ CREATE TABLE `recruitment` (
 
 LOCK TABLES `recruitment` WRITE;
 /*!40000 ALTER TABLE `recruitment` DISABLE KEYS */;
+INSERT INTO `recruitment` VALUES (1,1,1,'2019-05-27 19:36:50',NULL),(2,1,2,'2019-05-27 19:36:50',NULL);
 /*!40000 ALTER TABLE `recruitment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +187,7 @@ CREATE TABLE `recruitment_status` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,6 +196,7 @@ CREATE TABLE `recruitment_status` (
 
 LOCK TABLES `recruitment_status` WRITE;
 /*!40000 ALTER TABLE `recruitment_status` DISABLE KEYS */;
+INSERT INTO `recruitment_status` VALUES (1,'interviewing'),(2,'interested'),(3,'onboarding'),(4,'finished');
 /*!40000 ALTER TABLE `recruitment_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -462,4 +465,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-29  0:06:21
+-- Dump completed on 2019-05-29  0:41:54
