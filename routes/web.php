@@ -27,6 +27,8 @@ Route::post('/users/destroy/{id}', 'UserController@destroy')->name('users.destro
 
 Route::get('/tasks', 'TaskController@index')->name('tasks.list');
 Route::post('/tasks/{id}', 'TaskController@update')->name('tasks.update');
+Route::get('/tasks/create', 'TaskController@create')->name('tasks.create');
+Route::post('/tasks', 'TaskController@store')->name('tasks.store');
 
 Route::get('/tasks/{id}', 'TaskController@show')->name('tasks.get');
 Route::get('/recruitments', 'RecruitmentController@index')->name('recruitments.list');

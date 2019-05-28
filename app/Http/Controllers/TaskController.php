@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Task;
 
 class TaskController extends Controller
 {
@@ -29,8 +30,14 @@ class TaskController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {        
+        $departments = DB::table('department')->get();
+        $users = DB::table('users')->get();
+
+        return view('tasks.create', [            
+            'departments' => $departments,
+            'users' => $users
+        ]);
     }
 
     /**
@@ -41,7 +48,13 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Task::updateOrCreate([
+            "name" => $request->input('name'),
+            "description" => $request->input('description'),
+            "department_id" => $request->input('department'),
+            "user_id" => $request->input('user')
+        ]);
+        return redirect('/tasks');
     }
 
     /**
@@ -89,7 +102,15 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->request->all(), $id);
+        DB::table('task')->where('id', $id)
+        ->update([
+            "name" => $request->input('name'),
+            "description" => $request->input('description'),
+            "department_id" => $request->input('department'),
+            "user_id" => $request->input('user')
+        ]);
+
+        return back()->withInput();
     }
 
     /**

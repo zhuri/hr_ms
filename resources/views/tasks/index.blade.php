@@ -8,7 +8,7 @@
                     <div class="header">
                         <div class="row">
                             <div class="col-md-2">
-                                <button class="btn btn-default btn-block">Add new</button>
+                                <a class="btn btn-default btn-block" href="{{ action('TaskController@create') }}">Add new</a>
                             </div>                        
                         </div>
                     </div>
