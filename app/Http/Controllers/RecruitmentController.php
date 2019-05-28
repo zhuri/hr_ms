@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RecruitmentController extends Controller
 {
@@ -11,9 +12,17 @@ class RecruitmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {        
-        return view('recruitment.index');
+        $recruitments = DB::table('recruitment as r')
+        ->join('recruitment_status as rs', 'rs.id', '=', 'r.status_id')
+        ->join('applicant as a', 'a.id', '=', 'r.applicant_id')
+        ->select('r.*', 'rs.name as status', 'a.first_name', 'a.last_name', 'a.position')
+        ->get();
+        
+        return view('recruitment.index', [
+            'recruitments' => $recruitments
+        ]);
     }
 
     /**

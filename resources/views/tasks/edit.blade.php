@@ -9,12 +9,14 @@
                             <h4 class="title">Edit Task</h4>
                         </div>
                         <div class="content">
-                            <form>
+                        <form action="{{action('TaskController@update', $task->id)}}" method="POST">
+                            {{ csrf_field() }}
+                            @method('POST')
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            <label>Name (disabled)</label>
-                                        <input type="text" name="name" class="form-control" disabled placeholder="Company" value="{{ $task->name }}">
+                                            <label>Name</label>
+                                        <input type="text" name="name" class="form-control" placeholder="Company" value="{{ $task->name }}">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -28,7 +30,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <select class="form-control select md-form">
+                                            <select class="form-control select md-form" name="department">
                                                 <option value="" disabled selected>Department</option>
                                                 @foreach ($departments as $department)                                                    
                                                     <option value="{{$department->id}}" {{$department->id == $task->department_id ? "selected" : ""}}>{{$department->name}}</option>
@@ -38,7 +40,7 @@
                                     </div>     
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <select class="form-control select md-form">
+                                            <select class="form-control select md-form" name="user">
                                                 <option value="" disabled selected>User</option>                                                
                                                 @foreach ($users as $user)
                                             <option value="{{$user->id}}" {{$user->id == $task->user_id ? "selected" : ""}}>{{$user->email}}</option>
@@ -47,7 +49,7 @@
                                         </div>
                                     </div>                               
                                 </div>                                
-                                <button type="submit" class="btn btn-info btn-fill pull-right">Update</button>
+                                <input type="submit" class="btn btn-info btn-fill pull-right"/>
                                 <div class="clearfix"></div>
                             </form>
                         </div>

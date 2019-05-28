@@ -6,8 +6,11 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Striped Table with Hover</h4>
-                        <p class="category">Here is a subtitle for this table</p>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button class="btn btn-default btn-block">Add new</button>
+                            </div>                        
+                        </div>
                     </div>
                     <div class="content table-responsive table-full-width">
                         <table class="table table-hover table-striped">

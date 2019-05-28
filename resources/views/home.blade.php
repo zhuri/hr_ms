@@ -15,7 +15,7 @@
                     @endif
                     <div><a href="{{ url('/users') }}">Users</a>      </div>          
                     <div><a href="{{ url('/tasks') }}">Tasks</a>  </div>
-                    <div><a href="{{ url('/recruitment') }}">Recruitment</a>  </div>
+                    <div><a href="{{ url('/recruitments') }}">Recruitment</a>  </div>
                     <div><a href="{{ url('/vacations') }}">Vacations</a>  </div>
                     <div><a href="{{ url('/payrolls') }}">Payrolls</a>  </div>
                     <div><a href="{{ url('/departments') }}">Departments</a>  </div>

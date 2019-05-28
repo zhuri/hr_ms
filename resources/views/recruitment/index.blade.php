@@ -6,28 +6,31 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Striped Table with Hover</h4>
-                        <p class="category">Here is a subtitle for this table</p>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <button class="btn btn-default btn-block">Add new</button>
+                            </div>                        
+                        </div>
                     </div>
                     <div class="content table-responsive table-full-width">
                         <table class="table table-hover table-striped">
                             <thead>                                
-                                <th class="col-md-2">Name</th>
-                                <th class="col-md-2">Description</th>
-                                <th class="col-md-2">Department</th>
-                                <th class="col-md-2">User</th>                                
+                                <th class="col-md-2">Status</th>
+                                <th class="col-md-2">Applicant</th>
+                                <th class="col-md-2">Position</th>
+                                <th class="col-md-2">Date started</th>                                
                                 <th>Operations</th>
                             </thead>
                             <tbody>
-                                @foreach ($tasks as $task)
+                                @foreach ($recruitments as $rec)
                                     <tr>                                    
-                                        <td>{{$task->name}}</td>
-                                        <td>{{$task->description}}</td>
-                                        <td>{{$task->department}}</td>   
-                                        <td>{{$task->email ? $task->email : ""}}</td>     
+                                        <td>{{$rec->status}}</td>
+                                        <td>{{$rec->first_name . " " . $rec->last_name}}</td>
+                                        <td>{{$rec->position}}</td>   
+                                        <td>{{$rec->created_at}}</td>     
                                         <td>
-                                            <a href="{{ action('TaskController@show', $task->id) }}" class="btn btn-info btn-fill">Edit</a>
-                                            <a href="{{ action('UserController@destroy', $task->id) }}" class="btn btn-danger btn-fill">Delete</a>
+                                            <a href="{{ action('RecruitmentController@show', $rec->id) }}" class="btn btn-info btn-fill">Edit</a>
+                                            <a href="{{ action('RecruitmentController@destroy', $rec->id) }}" class="btn btn-danger btn-fill">Delete</a>
                                         </td>                               
                                     </tr>
                                 @endforeach                               
