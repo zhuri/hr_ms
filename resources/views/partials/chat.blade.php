@@ -1,7 +1,7 @@
 
-<div class="container">
-        <div class="row">
-            <div class="col-md-5">
+<div class="row">
+        <div class="">
+            <div class="col-md-12">
                 <div class="panel panel-primary">
                     <div class="panel-heading" id="accordion">
                         <span class="glyphicon glyphicon-comment"></span> Chat

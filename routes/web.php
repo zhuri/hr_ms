@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::redirect('/', '/login');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/users', 'UserController@index')->name('users.list');
@@ -39,6 +41,23 @@ Route::post('/recruitments', 'RecruitmentController@store')->name('recruitments.
 Route::post('/recruitments/{id}', 'RecruitmentController@update')->name('recruitments.update');
 Route::post('/recruitments/destroy/{id}', 'RecruitmentController@destroy')->name('recruitments.destroy');
 
-Route::get('/vacations', 'VacationController@index')->name('vacations.list');
+Route::get('/user_requests', 'UserRequestController@index')->name('user_requests.list');
+Route::get('/user_requests/{id}', 'UserRequestController@show')->name('user_requests.get');
+Route::get('/user_requests/create/new', 'UserRequestController@create')->name('user_requests.create');
+Route::post('/user_requests', 'UserRequestController@store')->name('user_requests.store');
+Route::post('/user_requests/{id}', 'UserRequestController@update')->name('user_requests.update');
+Route::post('/user_requests/destroy/{id}', 'UserRequestController@destroy')->name('user_requests.destroy');
+
 Route::get('/payrolls', 'PayrollController@index')->name('payrolls.list');
+Route::get('/payrolls/{id}', 'PayrollController@show')->name('payrolls.get');
+Route::get('/payrolls/create/new', 'PayrollController@create')->name('payrolls.create');
+Route::post('/payrolls', 'PayrollController@store')->name('payrolls.store');
+Route::post('/payrolls/{id}', 'PayrollController@update')->name('payrolls.update');
+Route::post('/payrolls/destroy/{id}', 'PayrollController@destroy')->name('payrolls.destroy');
+
 Route::get('/departments', 'DepartmentController@index')->name('departments.list');
+Route::get('/departments/{id}', 'DepartmentController@show')->name('departments.get');
+Route::get('/departments/create/new', 'DepartmentController@create')->name('departments.create');
+Route::post('/departments', 'DepartmentController@store')->name('departments.store');
+Route::post('/departments/{id}', 'DepartmentController@update')->name('departments.update');
+Route::post('/departments/destroy/{id}', 'DepartmentController@destroy')->name('departments.destroy');

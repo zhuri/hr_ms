@@ -20,7 +20,7 @@
                     <br>
                     <div><a href="{{ url('/recruitments') }}" class="btn btn-default btn-block">Recruitment</a></div>
                     <br>
-                    <div><a href="{{ url('/vacations') }}" class="btn btn-default btn-block">Vacations</a></div>
+                    <div><a href="{{ url('/user_requests') }}" class="btn btn-default btn-block">Requests</a></div>
                     <br>
                     <div><a href="{{ url('/payrolls') }}" class="btn btn-default btn-block">Payrolls</a></div>
                     <br>
