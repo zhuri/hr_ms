@@ -6,16 +6,37 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\UserRequest;
+use App\Role;
 
 class UserRequestController extends Controller
 {
     public function index()
     {
-        $userRequests = DB::table('user_request as ur')
+        if (Auth::user()->role_id == Role::$HIGHER_MANAGEMENT) {
+            $userRequests = DB::table('user_request as ur')
             ->join('users as u', 'ur.user_id', '=', 'u.id')
             ->join('user_request_type as urt', 'urt.id', '=', 'ur.type_id')
             ->select('ur.*', 'u.name as user', 'urt.name as type')
             ->get();
+        }        
+
+        if (Auth::user()->role_id == Role::$MID_MANAGEMENT) {
+            $userRequests = DB::table('user_request as ur')
+            ->join('users as u', 'ur.user_id', '=', 'u.id')
+            ->join('user_request_type as urt', 'urt.id', '=', 'ur.type_id')
+            ->select('ur.*', 'u.name as user', 'urt.name as type', 'u.role_id')
+            ->where("u.role_id", '!=', Role::$HIGHER_MANAGEMENT)
+            ->get();
+        }
+
+        if (Auth::user()->role_id == Role::$EMPLOYEE) {
+            $userRequests = DB::table('user_request as ur')
+            ->join('users as u', 'ur.user_id', '=', 'u.id')
+            ->join('user_request_type as urt', 'urt.id', '=', 'ur.type_id')
+            ->select('ur.*', 'u.name as user', 'urt.name as type', 'u.role_id')
+            ->where('ur.user_id', '=', Auth::user()->id)
+            ->get();
+        }
 
         return view('user_requests.index', [
             'user_requests' => $userRequests

@@ -40,6 +40,32 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="dpt" class="col-md-4 col-form-label text-md-right">{{ __('Department') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control select md-form" name="department_id" id="dpt">
+                                        <option value="" disabled selected>Department</option>
+                                        @foreach ($departments as $dpt)                                                    
+                                            <option value="{{$dpt->id}}">{{ucfirst($dpt->name)}}</option>
+                                        @endforeach                                            
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="dpt" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control select md-form" name="role_id" id="dpt">
+                                        <option value="" disabled selected>Role</option>
+                                        @foreach ($roles as $dpt)                                                    
+                                            <option value="{{$dpt->id}}">{{ucfirst($dpt->name)}}</option>
+                                        @endforeach                                            
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
