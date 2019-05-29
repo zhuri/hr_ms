@@ -13,12 +13,18 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div><a href="{{ url('/users') }}">Users</a>      </div>          
-                    <div><a href="{{ url('/tasks') }}">Tasks</a>  </div>
-                    <div><a href="{{ url('/recruitments') }}">Recruitment</a>  </div>
-                    <div><a href="{{ url('/vacations') }}">Vacations</a>  </div>
-                    <div><a href="{{ url('/payrolls') }}">Payrolls</a>  </div>
-                    <div><a href="{{ url('/departments') }}">Departments</a>  </div>
+
+                    <div><a href="{{ url('/users') }}" class="btn btn-default btn-block">Users</a></div>    
+                    <br>      
+                    <div><a href="{{ url('/tasks') }}" class="btn btn-default btn-block">Tasks</a></div>
+                    <br>
+                    <div><a href="{{ url('/recruitments') }}" class="btn btn-default btn-block">Recruitment</a></div>
+                    <br>
+                    <div><a href="{{ url('/vacations') }}" class="btn btn-default btn-block">Vacations</a></div>
+                    <br>
+                    <div><a href="{{ url('/payrolls') }}" class="btn btn-default btn-block">Payrolls</a></div>
+                    <br>
+                    <div><a href="{{ url('/departments') }}" class="btn btn-default btn-block">Departments</a></div>
                 </div>            
             </div>
         </div>

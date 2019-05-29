@@ -52,7 +52,8 @@ class TaskController extends Controller
             "name" => $request->input('name'),
             "description" => $request->input('description'),
             "department_id" => $request->input('department'),
-            "user_id" => $request->input('user')
+            "user_id" => $request->input('user'),
+            
         ]);
         return redirect('/tasks');
     }

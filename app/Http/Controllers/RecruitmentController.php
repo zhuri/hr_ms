@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Applicant;
+use App\Recruitment;
 
 class RecruitmentController extends Controller
 {
@@ -17,7 +19,8 @@ class RecruitmentController extends Controller
         $recruitments = DB::table('recruitment as r')
         ->join('recruitment_status as rs', 'rs.id', '=', 'r.status_id')
         ->join('applicant as a', 'a.id', '=', 'r.applicant_id')
-        ->select('r.*', 'rs.name as status', 'a.first_name', 'a.last_name', 'a.position')
+        ->join('positions as p', 'p.id', '=', 'a.position_id')
+        ->select('r.*', 'rs.name as status', 'a.first_name', 'a.last_name', 'p.name as position')
         ->get();
         
         return view('recruitment.index', [
@@ -31,8 +34,13 @@ class RecruitmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {        
+        $statuses = DB::table('recruitment_status')->get();
+        $positions = DB::table('positions')->get();
+        return view('recruitment.create', [
+            'statuses' => $statuses,
+            'positions' => $positions
+        ]);
     }
 
     /**
@@ -42,8 +50,21 @@ class RecruitmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {    
+
+        $applicant = new Applicant();
+        $applicant->first_name = $request->input('first_name');
+        $applicant->last_name = $request->input('last_name');
+        $applicant->position_id = $request->input('position_id');
+        $applicant->save();
+
+        $recruitment = new Recruitment();
+        $recruitment->status_id = $request->input('status_id');
+        $recruitment->applicant_id = $applicant->id;
+        $recruitment->notes = $request->input('notes');
+        $recruitment->save();
+        
+        return redirect('/recruitments');
     }
 
     /**

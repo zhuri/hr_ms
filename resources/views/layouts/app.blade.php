@@ -80,7 +80,14 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')            
+            <div class="container">
+                    <div class="col-md-2 md-offset-3">
+                            <a href="{{ URL::previous() }}" class="btn btn-default btn-block">Previous</a>
+                    </div>
+                                
+            </div>        
+            @yield('content')
+            
         </main>
     </div>
 </body>

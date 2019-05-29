@@ -28,12 +28,16 @@ Route::post('/users/destroy/{id}', 'UserController@destroy')->name('users.destro
 Route::get('/tasks', 'TaskController@index')->name('tasks.list');
 Route::post('/tasks/{id}', 'TaskController@update')->name('tasks.update');
 Route::get('/tasks/create', 'TaskController@create')->name('tasks.create');
-Route::post('/tasks', 'TaskController@store')->name('tasks.store');
-
+Route::post('/tasks', 'TaskController@store')->name('tasks.store'); 
 Route::get('/tasks/{id}', 'TaskController@show')->name('tasks.get');
+
+
 Route::get('/recruitments', 'RecruitmentController@index')->name('recruitments.list');
-Route::get('/recruitments/{id}', 'RecruitmentController@show')->name('users.get');
-Route::post('/recruitments/destroy/{id}', 'RecruitmentController@destroy')->name('users.destroy');
+Route::get('/recruitments/{id}', 'RecruitmentController@show')->name('recruitments.get');
+Route::get('/recruitments/create/new', 'RecruitmentController@create')->name('recruitments.create');
+Route::post('/recruitments', 'RecruitmentController@store')->name('recruitments.store');
+Route::post('/recruitments/{id}', 'RecruitmentController@update')->name('recruitments.update');
+Route::post('/recruitments/destroy/{id}', 'RecruitmentController@destroy')->name('recruitments.destroy');
 
 Route::get('/vacations', 'VacationController@index')->name('vacations.list');
 Route::get('/payrolls', 'PayrollController@index')->name('payrolls.list');
