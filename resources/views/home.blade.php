@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="card card-user">
+            <div>
                 @include('partials.chat')
             </div>
         </div>
