@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Task;
+use Illuminate\Support\Facades\Auth;
+use App\Role;
 
 class TaskController extends Controller
 {
@@ -15,11 +17,31 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = DB::table('task')
-        ->leftJoin('users', 'task.user_id', '=', 'users.id')
-        ->join('department', 'task.department_id', '=', 'department.id')
-        ->select('task.*', 'department.name as department', 'users.email as email')
-        ->get();
+        if (Auth::user()->role_id == Role::$HIGHER_MANAGEMENT) {
+            $tasks = DB::table('task')
+                ->leftJoin('users', 'task.user_id', '=', 'users.id')
+                ->join('department', 'task.department_id', '=', 'department.id')
+                ->select('task.*', 'department.name as department', 'users.email as email')
+                ->get();
+        }        
+
+        if (Auth::user()->role_id == Role::$MID_MANAGEMENT) {
+            $tasks = DB::table('task')
+                ->leftJoin('users', 'task.user_id', '=', 'users.id')
+                ->join('department', 'task.department_id', '=', 'department.id')
+                ->select('task.*', 'department.name as department', 'users.email as email')
+                ->where('users.role_id', '!=', Role::$HIGHER_MANAGEMENT)
+                ->get();
+        }        
+
+        if (Auth::user()->role_id == Role::$EMPLOYEE) {
+            $tasks = DB::table('task')
+                ->leftJoin('users', 'task.user_id', '=', 'users.id')
+                ->join('department', 'task.department_id', '=', 'department.id')
+                ->select('task.*', 'department.name as department', 'users.email as email')
+                ->where('task.user_id', '=', Auth::user()->id)
+                ->get();
+        }        
         
         return view('tasks.index', ['tasks' => $tasks]);
     }

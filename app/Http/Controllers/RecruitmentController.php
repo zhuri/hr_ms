@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Applicant;
 use App\Recruitment;
+use App\RecruitmentStatus;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class RecruitmentController extends Controller
 {
@@ -21,6 +24,7 @@ class RecruitmentController extends Controller
         ->join('applicant as a', 'a.id', '=', 'r.applicant_id')
         ->join('positions as p', 'p.id', '=', 'a.position_id')
         ->select('r.*', 'rs.name as status', 'a.first_name', 'a.last_name', 'p.name as position')
+        ->orderBy('updated_at', 'desc')
         ->get();
         
         return view('recruitment.index', [
@@ -74,8 +78,22 @@ class RecruitmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {        
+        $recruitment = DB::table('recruitment as r')
+            ->join('applicant as a', 'r.applicant_id', '=', 'a.id')   
+            ->join('positions as p', 'p.id', '=', 'a.position_id')     
+            ->select('r.*', 'a.first_name', 'a.last_name', 'p.id as position_id')
+            ->where('r.id', $id)
+            ->first();
+        
+        $positions = DB::table('positions')->get();
+        $statuses = DB::table('recruitment_status')->get();
+
+        return view('recruitment.edit', [
+            'recruitment' => $recruitment,
+            'positions' => $positions,
+            'statuses' => $statuses
+        ]);
     }
 
     /**
@@ -97,8 +115,28 @@ class RecruitmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {                
+        if (RecruitmentStatus::isStatusFinished($request->input('status_id'))) {
+            $position = DB::table('positions')->find($request->input('position_id'));            
+            User::updateOrCreate(
+                ['name' => $request->input('name'), 'email' => $request->input('name'). '@company.com',],
+                [
+                    'name' => $request->input('name'),
+                    'email' => $request->input('name'). '@company.com',
+                    'password' => Hash::make("test123"),
+                    'role_id' => 3,
+                    'department_id' => $position->department_id,
+            ]);
+            // and then we send the email and password to his inbox email for reset
+        }
+
+        DB::table('recruitment')->where('id', $id)
+        ->update([
+            "status_id" => $request->input('status_id'),
+            "notes" => $request->input('notes'),            
+        ]);
+
+        return redirect('/recruitments');
     }
 
     /**
