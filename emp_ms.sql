@@ -383,12 +383,13 @@ CREATE TABLE `user_request` (
   `details` text,
   `date_from` datetime DEFAULT NULL,
   `date_to` datetime DEFAULT NULL,
-  `date_created` datetime DEFAULT NULL,
-  `date_updated` datetime DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `type_id` (`type_id`),
-  CONSTRAINT `user_request_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `user_request_type` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `user_request_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `user_request_type` (`id`),
+  CONSTRAINT `user_request_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `user_request_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -397,6 +398,7 @@ CREATE TABLE `user_request` (
 
 LOCK TABLES `user_request` WRITE;
 /*!40000 ALTER TABLE `user_request` DISABLE KEYS */;
+INSERT INTO `user_request` VALUES (1,1,1,'I want to take a short vacation on these dates.','2019-05-29 00:00:00','2019-05-31 00:00:00','2019-05-29 21:40:32','2019-05-29 21:40:32');
 /*!40000 ALTER TABLE `user_request` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -408,10 +410,10 @@ DROP TABLE IF EXISTS `user_request_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_request_type` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -420,6 +422,7 @@ CREATE TABLE `user_request_type` (
 
 LOCK TABLES `user_request_type` WRITE;
 /*!40000 ALTER TABLE `user_request_type` DISABLE KEYS */;
+INSERT INTO `user_request_type` VALUES (1,'vacation'),(2,'long weekend'),(3,'sick day'),(4,'early leave'),(5,'pregnancy');
 /*!40000 ALTER TABLE `user_request_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -472,4 +475,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-29 15:29:38
+-- Dump completed on 2019-05-29 23:52:41
