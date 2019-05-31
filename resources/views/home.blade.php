@@ -18,7 +18,9 @@
                     <br>      
                     <div><a href="{{ url('/tasks') }}" class="btn btn-default btn-block">Tasks</a></div>
                     <br>
-                    <div><a href="{{ url('/recruitments') }}" class="btn btn-default btn-block">Recruitment</a></div>
+                    @if(Auth::user()->role_id != 3)
+                        <div><a href="{{ url('/recruitments') }}" class="btn btn-default btn-block">Recruitment</a></div>
+                    @endif
                     <br>
                     <div><a href="{{ url('/user_requests') }}" class="btn btn-default btn-block">Requests</a></div>
                     <br>

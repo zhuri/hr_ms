@@ -8,7 +8,7 @@
                     <div class="header">
                         <div class="row">
                             <div class="col-md-2">
-                                <a class="btn btn-default btn-block" href="{{ action('RecruitmentController@create') }}">Add new</a>
+                                <a class="btn btn-default btn-block" href="{{ action('PayrollController@create') }}">Generate for this month</a>
                             </div>                        
                         </div>
                     </div>
@@ -16,23 +16,20 @@
                         <div class="content table-responsive table-full-width">
                             <table class="table table-hover table-striped">
                                 <thead>                                
-                                    <th class="col-md-2">Status</th>
-                                    <th class="col-md-2">Applicant</th>
-                                    <th class="col-md-2">Position</th>
-                                    <th class="col-md-2">Date started</th>                                
-                                    <th>Operations</th>
+                                    <th>Manager</th>
+                                    <th>User</th>
+                                    <th>Sum</th>
+                                    <th>Bonus</th>                                
+                                    <th>Created</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($recruitments as $rec)
+                                    @foreach ($payrolls as $pay)
                                         <tr>                                    
-                                            <td>{{$rec->status}}</td>
-                                            <td>{{$rec->first_name . " " . $rec->last_name}}</td>
-                                            <td>{{$rec->position}}</td>   
-                                            <td>{{$rec->created_at}}</td>     
-                                            <td>
-                                                <a href="{{ action('RecruitmentController@show', $rec->id) }}" class="btn btn-info btn-fill">Edit</a>
-                                                <a href="{{ action('RecruitmentController@destroy', $rec->id) }}" class="btn btn-danger btn-fill">Delete</a>
-                                            </td>                               
+                                            <td>{{$pay->manager}}</td>
+                                            <td>{{$pay->user}}</td>
+                                            <td>{{$pay->sum + $pay->bonus}}</td> 
+                                            <td>{{$pay->bonus}}</td>  
+                                            <td>{{$pay->created_at}}</td>                                                                    
                                         </tr>
                                     @endforeach                               
                                 </tbody>

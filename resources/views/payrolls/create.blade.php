@@ -6,55 +6,41 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="header">
-                            <h4 class="title">New Recruitment</h4>
+                        <h4 class="title">Generate payrolls for {{date('F Y')}}</h4>
                         </div>
                         <div class="content">
-                        <form action="{{action('RecruitmentController@store')}}" method="POST">
+                        <form action="{{action('PayrollController@store')}}" method="POST">
                             {{ csrf_field() }}
                             @method('POST')
                                 <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <label>First name</label>
-                                        <input type="text" name="first_name" class="form-control" placeholder="First name" value="">
-                                        </div>
+                                    
+                                    <div class="container">
+                                            <table id="myTable" class=" table order-list">
+                                            <thead>
+                                                <tr></tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-sm-4"></td>
+                                                    <td class="col-sm-4"></td>
+                                                    <td class="col-sm-3"></td>
+                                                    <td class="col-sm-2"><a class="deleteRow"></a></td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="5" style="text-align: left;">
+                                                        <input type="button" class="btn btn-lg btn-block " id="addrow" value="Add Bonus user" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Last name</label>
-                                        <input type="text" name="last_name" class="form-control" placeholder="Last name" value="">
-                                        </div>
-                                    </div>                                       
-                                                               
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <select class="form-control select md-form" name="position_id">
-                                                <option value="" disabled selected>Position</option>
-                                                @foreach ($positions as $position)                                                    
-                                                    <option value="{{$position->id}}">{{$position->name}}</option>
-                                                @endforeach                                            
-                                        </select>
-                                    </div>  
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select class="form-control select md-form" name="status_id">
-                                                <option value="" disabled selected>Status</option>
-                                                @foreach ($statuses as $status)                                                    
-                                                    <option value="{{$status->id}}">{{$status->name}}</option>
-                                                @endforeach                                            
-                                            </select>
-                                        </div>
-                                    </div>                                                                  
-                                </div>                                
-                                <div class="row">                                    
-                                    <div class="form-group">
-                                        <label for="note">Notes</label>
-                                        <textarea name="notes" id="note" cols="100" rows="10"></textarea>
-                                    </div> 
-                                </div>                            
-                                <input type="submit" class="btn btn-info btn-fill pull-right"/>
+                                                 
+                                <input type="submit" class="btn btn-info btn-fill pull-right" value="Generate"/>
                                 <div class="clearfix"></div>
                             </form>
                         </div>

@@ -16,11 +16,12 @@
                         <div class="content table-responsive table-full-width">
                             <table class="table table-hover table-striped">
                                 <thead>                                
-                                    <th class="col-md-2">Type</th>
-                                    <th class="col-md-2">User</th>
+                                    <th class="">Type</th>
+                                    <th class="">User</th>
                                     <th class="col-md-2">Date from</th>                                    
                                     <th class="col-md-2">Date To</th>  
-                                    <th class="col-md-2">Created</th>                              
+                                    <th class="col-md-2">Created</th>  
+                                    <th class="col-md-2">Status</th>  
                                     <th>Operations</th>
                                 </thead>
                                 <tbody>
@@ -30,10 +31,18 @@
                                             <td>{{$rec->user}}</td>
                                             <td>{{$rec->date_from}}</td>   
                                             <td>{{$rec->date_to}}</td>     
-                                            <td>{{$rec->created_at}}</td>     
+                                            <td>{{$rec->created_at}}</td>   
+                                            <td>{{$rec->status}}</td>  
                                             <td>
-                                                <a href="{{ action('UserRequestController@show', $rec->id) }}" class="btn btn-info btn-fill">Edit</a>
-                                                <a href="{{ action('UserRequestController@destroy', $rec->id) }}" class="btn btn-danger btn-fill">Delete</a>
+                                                @if($rec->status_id == 1)
+                                                @if(Auth::user()->role_id != 3)
+                                                    <a href="{{ action('UserRequestController@approve', $rec->id) }}" class="btn btn-info btn-fill">Approve</a> 
+                                                    <a href="{{ action('UserRequestController@deny', $rec->id) }}" class="btn btn-danger btn-fill">Deny</a>                                                    
+                                                @else
+                                                    <a href="{{ action('UserRequestController@show', $rec->id) }}" class="btn btn-info btn-fill">Edit</a>
+                                                    <a href="{{ action('UserRequestController@destroy', $rec->id) }}" class="btn btn-danger btn-fill">Delete</a>
+                                                @endif
+                                                @endif                                                
                                             </td>                               
                                         </tr>
                                     @endforeach                               

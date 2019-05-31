@@ -16,10 +16,10 @@
                         <div class="content table-responsive table-full-width">
                             <table class="table table-hover table-striped">
                                 <thead>
-                                    <th class="col-md-2">ID</th>                                
-                                    <th class="col-md-2">Name</th>
-                                    <th class="col-md-2">Email</th>
-                                    <th class="col-md-3">Department</th>
+                                    <th>ID</th>                                
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Department</th>
                                     <th>Operations</th>
                                 </thead>
                                 <tbody>
@@ -32,6 +32,7 @@
                                             <td>
                                                 <a href="{{ route('users.get', $user->id) }}" class="btn btn-info btn-fill">Edit</a>
                                                 <a href="{{ action('UserController@destroy', $user->id) }}" class="btn btn-danger btn-fill">Delete</a>
+                                                <a href="{{ action('ReportController@create', $user->id) }}" class="btn btn-warning btn-fill">Add Report</a>                                                
                                             </td>                               
                                         </tr>
                                     @endforeach                               
