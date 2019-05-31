@@ -130,14 +130,15 @@ CREATE TABLE `payroll` (
   `manager_id` int(11) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `sum` decimal(10,0) DEFAULT NULL,
-  `date_created` datetime DEFAULT NULL,
-  `date_updated` datetime DEFAULT NULL,
+  `bonus` decimal(10,0) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `manager_id` (`manager_id`),
   KEY `user_id` (`user_id`),
-  CONSTRAINT `payroll_ibfk_1` FOREIGN KEY (`manager_id`) REFERENCES `user` (`id`),
-  CONSTRAINT `payroll_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `payroll_ibfk_1` FOREIGN KEY (`manager_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `payroll_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,6 +147,7 @@ CREATE TABLE `payroll` (
 
 LOCK TABLES `payroll` WRITE;
 /*!40000 ALTER TABLE `payroll` DISABLE KEYS */;
+INSERT INTO `payroll` VALUES (1,1,1,100,0,NULL,NULL),(2,1,2,100,0,NULL,NULL),(3,1,6,100,50,NULL,NULL),(4,1,7,100,0,NULL,NULL),(5,1,8,100,100,NULL,NULL),(6,1,9,100,0,NULL,NULL);
 /*!40000 ALTER TABLE `payroll` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -324,10 +326,12 @@ CREATE TABLE `task` (
   `name` varchar(255) DEFAULT NULL,
   `description` text,
   `department_id` int(11) DEFAULT NULL,
-  `user_id` bigint(20) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `department_id` (`department_id`),
-  CONSTRAINT `task_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`)
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `task_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`),
+  CONSTRAINT `task_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -337,7 +341,7 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
-INSERT INTO `task` VALUES (1,'task 1','description 1',1,1),(2,'task 2','description 2',2,NULL),(3,'task 3','description 3',2,NULL),(4,'task 4','description 4',2,NULL),(5,'task 5','description 5',4,NULL),(6,'task 6','description 6',4,NULL),(7,'task 7','description 7',4,NULL),(8,'task 8','description 8',4,NULL),(9,'task 9','description 9',3,NULL),(10,'task 10','description 10',2,NULL),(11,'create a login page','this is a test for login page',4,1);
+INSERT INTO `task` VALUES (2,'task 2','description 2',2,NULL),(3,'task 3','description 3',2,NULL),(4,'task 4','description 4',2,NULL),(5,'task 5','description 5',4,NULL),(6,'task 6','description 6',4,NULL),(7,'task 7','description 7',4,NULL),(8,'task 8','description 8',4,NULL),(9,'task 9','description 9',3,NULL),(10,'task 10','description 10',2,NULL);
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -381,15 +385,18 @@ CREATE TABLE `user_request` (
   `type_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `details` text,
+  `status_id` int(11) DEFAULT NULL,
   `date_from` datetime DEFAULT NULL,
   `date_to` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `type_id` (`type_id`),
+  KEY `status_id` (`status_id`),
   CONSTRAINT `user_request_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `user_request_type` (`id`),
-  CONSTRAINT `user_request_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `user_request_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  CONSTRAINT `user_request_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `user_request_type` (`id`),
+  CONSTRAINT `user_request_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `user_request_status` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -398,8 +405,32 @@ CREATE TABLE `user_request` (
 
 LOCK TABLES `user_request` WRITE;
 /*!40000 ALTER TABLE `user_request` DISABLE KEYS */;
-INSERT INTO `user_request` VALUES (1,1,1,'I want to take a short vacation on these dates.','2019-05-29 00:00:00','2019-05-31 00:00:00','2019-05-29 21:40:32','2019-05-29 21:40:32');
+INSERT INTO `user_request` VALUES (1,1,1,'I want to take a short vacation on these dates.',1,'2019-05-29 00:00:00','2019-05-31 00:00:00','2019-05-29 21:40:32','2019-05-29 21:40:32'),(2,1,9,'I need a vacation bruh.',3,'2019-05-30 00:00:00','2019-05-31 00:00:00','2019-05-30 19:26:25','2019-05-30 19:26:25');
 /*!40000 ALTER TABLE `user_request` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_request_status`
+--
+
+DROP TABLE IF EXISTS `user_request_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_request_status` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_request_status`
+--
+
+LOCK TABLES `user_request_status` WRITE;
+/*!40000 ALTER TABLE `user_request_status` DISABLE KEYS */;
+INSERT INTO `user_request_status` VALUES (1,'pending'),(2,'approved'),(3,'denied');
+/*!40000 ALTER TABLE `user_request_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -434,7 +465,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `department_id` int(11) DEFAULT NULL,
@@ -443,6 +474,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salary` decimal(10,0) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -453,7 +485,7 @@ CREATE TABLE `users` (
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`),
   CONSTRAINT `users_ibfk_2` FOREIGN KEY (`metadata_id`) REFERENCES `user_metadata` (`id`),
   CONSTRAINT `users_ibfk_3` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -462,7 +494,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'endrit','ezhuri@gmail.com',1,NULL,1,NULL,'$2y$10$ZDNmbZnQlQzScLjZ8g2ao.Wpv6Gh2v5eKLjxMUrAMvuEef1rdaABO',NULL,'2019-05-27 17:36:50','2019-05-27 17:36:50'),(2,'Ali Ahme','Ali Ahme@company.com',4,NULL,2,NULL,'$2y$10$A0FdWVkc4WTJdxE.uNNfX.qngGYSzqePperwgCpE6RkPyzygOCROa',NULL,'2019-05-29 11:07:15','2019-05-29 11:20:01'),(6,'Bardh Fisteku','Bardh Fisteku@company.com',4,NULL,2,NULL,'$2y$10$9K7XURdsycpdJb9JvR6bKOA2Usb2BqS6sT9qtCNafBlz9T9sUjoFW',NULL,'2019-05-29 11:19:07','2019-05-29 11:19:52'),(7,'test','test@gmail.com',NULL,NULL,NULL,NULL,'$2y$10$HgaVvfNtsxmJM.snQudl6.Z1ChrCxubbXKpawyYusL7dD9lH893Ra',NULL,'2019-05-29 20:14:43','2019-05-29 20:14:43'),(8,'somone','some@gmail.com',4,NULL,2,NULL,'$2y$10$83c2G55JmWDbIaMdDotDv.o/qELDvuegB2yQIHgo1/G46msHi8xry',NULL,'2019-05-29 20:28:25','2019-05-29 20:28:25');
+INSERT INTO `users` VALUES (1,'endrit','ezhuri@gmail.com',1,NULL,1,NULL,'$2y$10$ZDNmbZnQlQzScLjZ8g2ao.Wpv6Gh2v5eKLjxMUrAMvuEef1rdaABO',NULL,100,'2019-05-27 17:36:50','2019-05-27 17:36:50'),(2,'Ali Ahme','Ali Ahme@company.com',4,NULL,2,NULL,'$2y$10$A0FdWVkc4WTJdxE.uNNfX.qngGYSzqePperwgCpE6RkPyzygOCROa',NULL,100,'2019-05-29 11:07:15','2019-05-29 11:20:01'),(6,'Bardh Fisteku','Bardh Fisteku@company.com',4,NULL,2,NULL,'$2y$10$9K7XURdsycpdJb9JvR6bKOA2Usb2BqS6sT9qtCNafBlz9T9sUjoFW',NULL,100,'2019-05-29 11:19:07','2019-05-29 11:19:52'),(7,'test','test@gmail.com',NULL,NULL,NULL,NULL,'$2y$10$HgaVvfNtsxmJM.snQudl6.Z1ChrCxubbXKpawyYusL7dD9lH893Ra',NULL,100,'2019-05-29 20:14:43','2019-05-29 20:14:43'),(8,'somone','some@gmail.com',4,NULL,2,NULL,'$2y$10$83c2G55JmWDbIaMdDotDv.o/qELDvuegB2yQIHgo1/G46msHi8xry',NULL,100,'2019-05-29 20:28:25','2019-05-29 20:28:25'),(9,'Filan','filan@gmail.com',4,NULL,3,NULL,'$2y$10$foZB6qEbA/yh1R.4B2eLg.h/7bKcEwgJBbjKo16ovpoAhfMzF26Ou','',100,'2019-05-30 17:23:33','2019-05-30 17:23:33');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -475,4 +507,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-30  0:32:35
+-- Dump completed on 2019-05-31 20:52:15
