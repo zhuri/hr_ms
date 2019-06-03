@@ -15,6 +15,7 @@ class UserRequest extends Model
         'type_id',
         'details' ,
         'date_from',
-        'date_to'
+        'date_to',
+        'status_id'
     ];
 }

@@ -57,13 +57,15 @@ class UserRequestController extends Controller
 
     public function store(Request $request)
     {
+        $pendingRequest = DB::table('user_request_status')->where('id', 1)->first();
+    
         UserRequest::create([
             'user_id' => Auth::user()->id,
             'type_id' => $request->input('type_id'),
             'details' => $request->input('details'),
             'date_from' => $request->input('date_from'),
             'date_to' => $request->input('date_to'),
-            'status_id' => 1
+            'status_id' => $pendingRequest->id
         ]);
 
         return redirect('/user_requests');
