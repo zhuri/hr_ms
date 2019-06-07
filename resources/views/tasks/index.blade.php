@@ -31,7 +31,7 @@
                                             <td>{{$task->email ? $task->email : ""}}</td>     
                                             <td>
                                                 <a href="{{ action('TaskController@show', $task->id) }}" class="btn btn-info btn-fill">Edit</a>
-                                                <a href="{{ action('UserController@destroy', $task->id) }}" class="btn btn-danger btn-fill">Delete</a>
+                                                <a href="{{ action('TaskController@destroy', $task->id) }}" class="btn btn-danger btn-fill">Delete</a>
                                             </td>                               
                                         </tr>
                                     @endforeach                               

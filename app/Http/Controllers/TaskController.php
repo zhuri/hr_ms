@@ -144,6 +144,9 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = DB::table('task')->where('id', $id);
+        $task->delete();
+
+        return back();
     }
 }

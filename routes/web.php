@@ -41,6 +41,7 @@ Route::post('/tasks/{id}', 'TaskController@update')->name('tasks.update');
 Route::get('/tasks/create', 'TaskController@create')->name('tasks.create');
 Route::post('/tasks', 'TaskController@store')->name('tasks.store'); 
 Route::get('/tasks/{id}', 'TaskController@show')->name('tasks.get');
+Route::get('/tasks/destroy/{id}', 'TaskController@destroy')->name('tasks.destroy');
 
 
 Route::get('/recruitments', 'RecruitmentController@index')->name('recruitments.list');

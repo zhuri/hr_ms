@@ -21,7 +21,7 @@ class UserController extends Controller
         ->select('users.*', 'department.name as department')
         ->get();
         
-        return view("users.index", ['users' => $users]);
+        return view('users.index', ['users' => $users]);
     }
 
     /**
