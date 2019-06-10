@@ -52,7 +52,7 @@ Route::get('/recruitments/{id}', 'RecruitmentController@show')->name('recruitmen
 Route::get('/recruitments/create/new', 'RecruitmentController@create')->name('recruitments.create');
 Route::post('/recruitments', 'RecruitmentController@store')->name('recruitments.store');
 Route::post('/recruitments/{id}', 'RecruitmentController@update')->name('recruitments.update');
-Route::post('/recruitments/destroy/{id}', 'RecruitmentController@destroy')->name('recruitments.destroy');
+Route::get('/recruitments/destroy/{id}', 'RecruitmentController@destroy')->name('recruitments.destroy');
 
 Route::get('/user_requests', 'UserRequestController@index')->name('user_requests.list');
 Route::get('/user_requests/{id}', 'UserRequestController@show')->name('user_requests.get');

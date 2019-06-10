@@ -31,22 +31,15 @@
                                             <td>{{$user->department}}</td>     
                                             <td>
                                                 <a href="{{ action('UserController@show', $user->id) }}" class="btn btn-info btn-fill">Edit</a>
+                                                @if(Auth::user()->role_id != 3)
                                                 <a href="{{ action('UserController@destroy', $user->id) }}" class="btn btn-danger btn-fill">Delete</a>
+                                                @endif
                                                 <a href="{{ action('ReportController@create', $user->id) }}" class="btn btn-warning btn-fill">Add Report</a>                                                
                                             </td>                               
                                         </tr>
                                     @endforeach                               
                                 </tbody>
                             </table>
-                            <div class="col-md-12">
-                                    {{-- <div class="col-md-"> --}}
-                                        @if(Session::has('message'))
-                                        <div class="alert alert-danger" role="alert">
-                                            <p>{{ Session::get('message') }}</p>
-                                        </div>
-                                    {{-- </div> --}}
-                                    @endif
-                            </div>
                         </div>
                     </div>
                     <div class="col-md-4">

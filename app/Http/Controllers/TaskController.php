@@ -134,7 +134,7 @@ class TaskController extends Controller
             "user_id" => $request->input('user')
         ]);
 
-        return back()->withInput();
+        return redirect()->action('TaskController@index');
     }
 
     /**

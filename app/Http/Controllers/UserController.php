@@ -58,6 +58,7 @@ class UserController extends Controller
         $users = DB::table('users')
         ->join('department', 'users.department_id', '=', 'department.id')
         ->select('users.*', 'department.name as department')
+        ->where('users.id', $id)
         ->first();
 
         //$users = DB::table('users')->get();
@@ -97,8 +98,7 @@ class UserController extends Controller
             "department_id" => $request->input('department'),
             // "user_id" => $request->input('user')
         ]);
-
-        return back()->withInput();
+        return redirect()->action('UserController@index');
     }
 
     /**
