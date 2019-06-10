@@ -32,8 +32,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/users', 'UserController@index')->name('users.list');
 Route::get('/users/create', 'UserController@create')->name('users.create');
+Route::post('/users/{id}', 'UserController@update')->name('users.update');
+Route::post('/users', 'UserController@store')->name('users.store');
 Route::get('/users/{id}', 'UserController@show')->name('users.get');
-Route::post('/users/destroy/{id}', 'UserController@destroy')->name('users.destroy');
+Route::get('/users/destroy/{id}', 'UserController@destroy')->name('users.destroy');
+
 
 
 Route::get('/tasks', 'TaskController@index')->name('tasks.list');

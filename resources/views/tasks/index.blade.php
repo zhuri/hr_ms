@@ -37,6 +37,15 @@
                                     @endforeach                               
                                 </tbody>
                             </table>
+                            <div class="col-md-12">
+                                    {{-- <div class="col-md-"> --}}
+                                        @if(Session::has('message'))
+                                        <div class="alert alert-danger" role="alert">
+                                            <p>{{ Session::get('message') }}</p>
+                                        </div>
+                                    {{-- </div> --}}
+                                    @endif
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -49,5 +58,5 @@
         </div>
     </div>
 </div>
-    
+
 @endsection
