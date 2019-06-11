@@ -6,13 +6,15 @@
             <div class="col-md-12">
                 <div class="">
                     <div class="header">
-                        <div class="row">
+                    <div class="row">
+                            <div class="col-md-7"></div>
                             <div class="col-md-2">
-                                <a class="btn btn-default btn-block" href="{{ action('PayrollController@create') }}">Generate for this month</a>
+                            <a style="margin-bottom:10px;" class="btn btn-outline-success col-md-12" href="{{ action('PayrollController@create') }}">Generate for this month</a>
                             </div>                        
+                        </div>                 
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-10">
                         <div class="content table-responsive table-full-width">
                             <table class="table table-hover table-striped">
                                 <thead>                                
