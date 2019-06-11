@@ -1,3 +1,5 @@
+{{-- copied from tasks to be modified --}}
+
 @extends('layouts.app')
 @section('content')
 <div class="content">
@@ -8,7 +10,7 @@
                     <div class="header">
                         <div class="row">
                             <div class="col-md-2">
-                                <a class="btn btn-default btn-block" href="{{ action('TaskController@create') }}">Add new</a>
+                                <a class="btn btn-default btn-block" href="{{ action('ReportController@create') }}">Add new report</a>
                             </div>                        
                         </div>
                     </div>
@@ -23,29 +25,22 @@
                                     <th>Operations</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($tasks as $task)
+                                    @foreach ($reports as $report)
                                         <tr>                                    
-                                            <td>{{$task->name}}</td>
-                                            <td>{{$task->description}}</td>
-                                            <td>{{$task->department}}</td>   
-                                            <td>{{$task->email ? $task->email : ""}}</td>     
+                                            <td>{{$report->name}}</td>
+                                            <td>{{$report->description}}</td>
+                                            <td>{{$report->department}}</td>   
+                                            <td>{{$report->email ? $task->email : ""}}</td>     
                                             <td>
-                                                <a href="{{ action('TaskController@show', $task->id) }}" class="btn btn-info btn-fill">Edit</a>
+                                                <a href="{{ action('ReportController@show', $report->id) }}" class="btn btn-info btn-fill">Edit</a>
                                                 @if(Auth::user()->role_id != 3)
-                                                <a href="{{ action('TaskController@destroy', $task->id) }}" class="btn btn-danger btn-fill">Delete</a>
+                                                <a href="{{ action('TaskController@destroy', $report->id) }}" class="btn btn-danger btn-fill">Delete</a>
                                                 @endif
                                             </td>                               
                                         </tr>
                                     @endforeach                               
                                 </tbody>
                             </table>
-                            {{-- <div class="col-md-12">
-                                        @if(Session::has('message'))
-                                        <div class="alert alert-warning" role="alert">
-                                            <p>{{ Session::get('message') }}</p>
-                                        </div>
-                                    @endif
-                            </div> --}}
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -58,5 +53,4 @@
         </div>
     </div>
 </div>
-
 @endsection

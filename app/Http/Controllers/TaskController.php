@@ -88,22 +88,37 @@ class TaskController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   
         $task = DB::table('task')
-        ->leftJoin('users', 'task.user_id', '=', 'users.id')
-        ->join('department', 'task.department_id', '=', 'department.id')
-        ->select('task.*', 'department.name as department', 'users.email as email')
-        ->where('task.id', $id)
-        ->first();
+            ->leftJoin('users', 'task.user_id', '=', 'users.id')
+            ->join('department', 'task.department_id', '=', 'department.id')
+            ->select('task.*', 'department.name as department', 'users.email as email')
+            ->where('task.id', $id)
+            ->first();
 
         $departments = DB::table('department')->get();
         $users = DB::table('users')->get();
 
-        return view('tasks.edit', [
-            'task' => $task,
-            'departments' => $departments,
-            'users' => $users
+        if(Auth::user()->role_id != 3) {
+            return view('tasks.edit', [
+                'task' => $task,
+                'departments' => $departments,
+                'users' => $users
             ]);
+        }
+        if(Auth::user()->role_id == 3 and user()->id == $task->user_id){
+            return view('tasks.edit', [
+                'task' => $task,
+                'departments' => $departments,
+                'users' => $users
+            ]);
+        }
+        else {
+            Session::flash('message', 'You cannot delete, you are an employee!'); 
+            Session::flash('alert-class', 'alert-warning');
+        }
+        
+            
     }
 
     /**
@@ -149,10 +164,10 @@ class TaskController extends Controller
             $task = DB::table('task')->where('id', $id);
             $task->delete();
         }
-        if (Auth::user()->role_id == Role::$EMPLOYEE){
-            Session::flash('message', 'You cannot delete, you are an employee!'); 
-            Session::flash('alert-class', 'alert-danger');
-        }
+        // if (Auth::user()->role_id == Role::$EMPLOYEE){
+        //     Session::flash('message', 'You cannot delete, you are an employee!'); 
+        //     Session::flash('alert-class', 'alert-danger');
+        // }
         return back();
     }
 }

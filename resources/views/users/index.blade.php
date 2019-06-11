@@ -40,6 +40,18 @@
                                     @endforeach                               
                                 </tbody>
                             </table>
+                            <div class="col-md-10">
+                                @if(Session::has('message'))
+                                <div class="alert alert-danger" role="alert">
+                                    <p>{{ Session::get('message') }}</p>
+                                </div>
+                                <script>
+                                        $(document).ready(function(){
+                                        $('.alert-danger').fadeIn().delay(1000).fadeOut();
+                                        });
+                                </script>
+                                @endif
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -53,5 +65,6 @@
 
     </div>
 </div>
+
     
 @endsection
