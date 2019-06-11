@@ -34,6 +34,8 @@ Route::get('/users', 'UserController@index')->name('users.list');
 Route::get('/users/create', 'UserController@create')->name('users.create');
 Route::get('/users/{id}', 'UserController@show')->name('users.get');
 Route::post('/users/destroy/{id}', 'UserController@destroy')->name('users.destroy');
+Route::post('/users', 'UserController@store')->name('users.store');
+Route::post('/users/{id}', 'UserController@update')->name('users.update');
 
 
 Route::get('/tasks', 'TaskController@index')->name('tasks.list');
@@ -41,6 +43,7 @@ Route::post('/tasks/{id}', 'TaskController@update')->name('tasks.update');
 Route::get('/tasks/create', 'TaskController@create')->name('tasks.create');
 Route::post('/tasks', 'TaskController@store')->name('tasks.store'); 
 Route::get('/tasks/{id}', 'TaskController@show')->name('tasks.get');
+Route::post('/tasks/destroy/{id}', 'TaskController@destroy')->name('tasks.destroy');
 
 
 Route::get('/recruitments', 'RecruitmentController@index')->name('recruitments.list');

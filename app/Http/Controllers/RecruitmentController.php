@@ -147,6 +147,8 @@ class RecruitmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $recruitment = DB::find($id);
+         $recruitment ->delete();
+         return redirect('/recruitments');
     }
 }
