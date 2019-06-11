@@ -6,20 +6,21 @@
             <div class="col-md-12">
                 <div class="">
                     <div class="header">
-                        <div class="row">
+                    <div class="row">
+                            <div class="col-md-7"></div>
                             <div class="col-md-2">
-                                <a class="btn btn-default btn-block" href="{{ action('TaskController@create') }}">Add new</a>
+                            <a style="margin-bottom:10px;" class="btn btn-outline-secondary col-md-12" href="{{ action('TaskController@create') }}">Add new</a>
                             </div>                        
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-10">
                         <div class="content table-responsive table-full-width">
                             <table class="table table-hover table-striped">
                                 <thead>                                
-                                    <th class="col-md-2">Name</th>
-                                    <th class="col-md-2">Description</th>
-                                    <th class="col-md-2">Department</th>
-                                    <th class="col-md-2">User</th>                                
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Department</th>
+                                    <th>User</th>                                
                                     <th>Operations</th>
                                 </thead>
                                 <tbody>
@@ -29,11 +30,11 @@
                                             <td>{{$task->description}}</td>
                                             <td>{{$task->department}}</td>   
                                             <td>{{$task->email ? $task->email : ""}}</td>     
-                                            <td>
-                                                <a href="{{ action('TaskController@show', $task->id) }}" class="btn btn-info btn-fill">Edit</a>
+                                            <td style="width:150px;">
+                                                <a href="{{ action('TaskController@show', $task->id) }}" class="btn btn-fill" style="background-color:#66b3ff; color:white;">Edit</a>
                                                 @if(Auth::user()->role_id != 3)
-                                                <a href="{{ action('TaskController@destroy', $task->id) }}" class="btn btn-danger btn-fill">Delete</a>
-                                                @endif
+                                                <a href="{{ action('UserController@destroy', $task->id) }}" class="btn btn-fill" style="background-color:#d11a2a; color:white;">Delete</a>
+                                                @endif	
                                             </td>                               
                                         </tr>
                                     @endforeach                               
