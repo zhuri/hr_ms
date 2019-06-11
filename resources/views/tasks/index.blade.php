@@ -31,12 +31,21 @@
                                             <td>{{$task->email ? $task->email : ""}}</td>     
                                             <td>
                                                 <a href="{{ action('TaskController@show', $task->id) }}" class="btn btn-info btn-fill">Edit</a>
-                                                <a href="{{ action('UserController@destroy', $task->id) }}" class="btn btn-danger btn-fill">Delete</a>
+                                                @if(Auth::user()->role_id != 3)
+                                                <a href="{{ action('TaskController@destroy', $task->id) }}" class="btn btn-danger btn-fill">Delete</a>
+                                                @endif
                                             </td>                               
                                         </tr>
                                     @endforeach                               
                                 </tbody>
                             </table>
+                            {{-- <div class="col-md-12">
+                                        @if(Session::has('message'))
+                                        <div class="alert alert-danger" role="alert">
+                                            <p>{{ Session::get('message') }}</p>
+                                        </div>
+                                    @endif
+                            </div> --}}
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -49,5 +58,5 @@
         </div>
     </div>
 </div>
-    
+
 @endsection

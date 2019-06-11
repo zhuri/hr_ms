@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Applicant;
 use App\Recruitment;
 use App\RecruitmentStatus;
 use App\User;
+use App\Role;
 use Illuminate\Support\Facades\Hash;
 
 class RecruitmentController extends Controller
@@ -147,8 +149,15 @@ class RecruitmentController extends Controller
      */
     public function destroy($id)
     {
-         $recruitment = DB::find($id);
-         $recruitment ->delete();
-         return redirect('/recruitments');
+        $recruitment = DB::table('recruitment')->where('id', $id);
+        if (Auth::user()->role_id != 3) {        
+            $recruitment->delete();
+            return back();
+        }
+        if (Auth::user()->role_id == Role::$EMPLOYEE){
+            Session::flash('message', 'You cannot delete, you are an employee!'); 
+            Session::flash('alert-class', 'alert-danger');
+        }
+        return back();
     }
 }

@@ -32,8 +32,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/users', 'UserController@index')->name('users.list');
 Route::get('/users/create', 'UserController@create')->name('users.create');
+Route::post('/users/{id}', 'UserController@update')->name('users.update');
+Route::post('/users', 'UserController@store')->name('users.store');
 Route::get('/users/{id}', 'UserController@show')->name('users.get');
-Route::post('/users/destroy/{id}', 'UserController@destroy')->name('users.destroy');
+Route::get('/users/destroy/{id}', 'UserController@destroy')->name('users.destroy');
 Route::post('/users', 'UserController@store')->name('users.store');
 Route::post('/users/{id}', 'UserController@update')->name('users.update');
 
@@ -43,7 +45,7 @@ Route::post('/tasks/{id}', 'TaskController@update')->name('tasks.update');
 Route::get('/tasks/create', 'TaskController@create')->name('tasks.create');
 Route::post('/tasks', 'TaskController@store')->name('tasks.store'); 
 Route::get('/tasks/{id}', 'TaskController@show')->name('tasks.get');
-Route::post('/tasks/destroy/{id}', 'TaskController@destroy')->name('tasks.destroy');
+Route::get('/tasks/destroy/{id}', 'TaskController@destroy')->name('tasks.destroy');
 
 
 Route::get('/recruitments', 'RecruitmentController@index')->name('recruitments.list');
@@ -51,7 +53,7 @@ Route::get('/recruitments/{id}', 'RecruitmentController@show')->name('recruitmen
 Route::get('/recruitments/create/new', 'RecruitmentController@create')->name('recruitments.create');
 Route::post('/recruitments', 'RecruitmentController@store')->name('recruitments.store');
 Route::post('/recruitments/{id}', 'RecruitmentController@update')->name('recruitments.update');
-Route::post('/recruitments/destroy/{id}', 'RecruitmentController@destroy')->name('recruitments.destroy');
+Route::get('/recruitments/destroy/{id}', 'RecruitmentController@destroy')->name('recruitments.destroy');
 
 Route::get('/user_requests', 'UserRequestController@index')->name('user_requests.list');
 Route::get('/user_requests/{id}', 'UserRequestController@show')->name('user_requests.get');

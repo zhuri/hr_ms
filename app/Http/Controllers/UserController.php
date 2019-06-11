@@ -6,6 +6,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Role;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -21,7 +23,7 @@ class UserController extends Controller
         ->select('users.*', 'department.name as department')
         ->get();
         
-        return view("users.index", ['users' => $users]);
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -53,7 +55,19 @@ class UserController extends Controller
      */
     public function show(int $id)
     {
-        dd("show", $id);
+        $users = DB::table('users')
+        ->join('department', 'users.department_id', '=', 'department.id')
+        ->select('users.*', 'department.name as department')
+        ->where('users.id', $id)
+        ->first();
+
+        //$users = DB::table('users')->get();
+        $departments = DB::table('department')->get();
+
+        return view('users.edit', [
+            'users' => $users,
+            'departments' => $departments
+        ]);
     }
 
     /**
@@ -74,9 +88,17 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         //
+        DB::table('users')->where('id', $id)
+        ->update([
+            "name" => $request->input('name'),
+            "email" => $request->input('email'),
+            "department_id" => $request->input('department'),
+            // "user_id" => $request->input('user')
+        ]);
+        return redirect()->action('UserController@index');
     }
 
     /**
@@ -88,5 +110,20 @@ class UserController extends Controller
     public function destroy(int $id)
     {
         //
+        $user = DB::table('users')->where('id', $id);
+
+        if (Auth::user()->role_id == Role::$HIGHER_MANAGEMENT) {        
+            $user->delete();
+            return back();
+        }
+        if (Auth::user()->role_id == Role::$MID_MANAGEMENT and $user->role_id == Role::$EMPLOYEE){
+            $user->delete();
+            return back();
+        }
+        if (Auth::user()->role_id == Role::$EMPLOYEE){
+            Session::flash('message', 'You cannot delete, you are an employee!'); 
+            Session::flash('alert-class', 'alert-danger');
+        }
+        return back();
     }
 }

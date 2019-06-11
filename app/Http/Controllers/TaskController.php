@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
 use App\Role;
+use Illuminate\Support\Facades\Session;
 
 class TaskController extends Controller
 {
@@ -133,7 +134,7 @@ class TaskController extends Controller
             "user_id" => $request->input('user')
         ]);
 
-        return back()->withInput();
+        return redirect()->action('TaskController@index');
     }
 
     /**
@@ -144,6 +145,14 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (Auth::user()->role_id == Role::$HIGHER_MANAGEMENT or Auth::user()->role_id == Role::$MID_MANAGEMENT) {
+            $task = DB::table('task')->where('id', $id);
+            $task->delete();
+        }
+        if (Auth::user()->role_id == Role::$EMPLOYEE){
+            Session::flash('message', 'You cannot delete, you are an employee!'); 
+            Session::flash('alert-class', 'alert-danger');
+        }
+        return back();
     }
 }
