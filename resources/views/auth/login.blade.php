@@ -76,6 +76,12 @@
                     <div class="">
                         <div class="">
                             <div class=" ">
+                                <div>
+                                    <br>
+                                    <p>Don't have account? <a href="{{route('register')}}">{{ __(' · Sign Up') }} </a></p>
+                                    
+
+                                </div>
                                 <label class="" for="remember">
                                     <input class="checkbox" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>{{ __('  Remember Me')}}
                                     @if (Route::has('password.request'))

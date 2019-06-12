@@ -93,7 +93,7 @@
                    <div>
                        <ul>
                            <li class="home-nav-item">
-                               <a href="" class="dashboard">
+                               <a href="{{url('/home')}}" class="dashboard">
                                    <i class="fa fa-dashboard"></i>
                                    <span class="margin">  Dashboard</span>
                                </a>
@@ -141,7 +141,7 @@
                            <li class="reports-nav-item">
                                <a href="" class="reports">
                                    <i class="fa fa-folder-o"></i>
-<span class="margin">Reports</span>
+                                    <span class="margin">Reports</span>
                                </a>
                            </li>
                        </ul>
