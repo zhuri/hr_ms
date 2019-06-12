@@ -61,13 +61,22 @@ class UserController extends Controller
         ->where('users.id', $id)
         ->first();
 
-        //$users = DB::table('users')->get();
         $departments = DB::table('department')->get();
 
-        return view('users.edit', [
-            'users' => $users,
-            'departments' => $departments
-        ]);
+        if(Auth::user()->role_id != 3 or (Auth::user()->role_id == 3 and Auth::user()->id == $users->id)) {
+            return view('users.edit', [
+                'users' => $users,
+                'departments' => $departments
+            ]);
+        }
+        if(Auth::user()->role_id == 3 and Auth::user()->id != $users->id) {
+            Session::flash('message', 'You cannot edit other users!'); 
+            Session::flash('alert-class', 'alert-danger');
+            return back();
+        }
+        else {
+            return back;
+        }
     }
 
     /**
@@ -123,7 +132,8 @@ class UserController extends Controller
         if (Auth::user()->role_id == Role::$EMPLOYEE){
             Session::flash('message', 'You cannot delete, you are an employee!'); 
             Session::flash('alert-class', 'alert-danger');
+            return back();
         }
-        return back();
+        
     }
 }
