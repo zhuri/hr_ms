@@ -27,7 +27,7 @@
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->department}}</td>     
                                             <td style="width:250px;">
-                                                <a href="{{ action('UserController@show', $user->id) }}" class="btn btn-fill">Edit</a>
+                                                <a href="{{ action('UserController@show', $user->id) }}" class="btn btn-fill" style="background-color:#66b3ff; color:white;">Edit</a>
                                                 @if(Auth::user()->role_id != 3)
                                                 <a href="{{ action('UserController@destroy', $user->id) }}" class="btn btn-fill" style="background-color:#d11a2a; color:white;">Delete</a>
                                                 @endif

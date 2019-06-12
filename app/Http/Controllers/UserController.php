@@ -132,7 +132,8 @@ class UserController extends Controller
         if (Auth::user()->role_id == Role::$EMPLOYEE){
             Session::flash('message', 'You cannot delete, you are an employee!'); 
             Session::flash('alert-class', 'alert-danger');
+            return back();
         }
-        return back();
+        
     }
 }
