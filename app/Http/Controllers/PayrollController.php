@@ -38,16 +38,18 @@ class PayrollController extends Controller
 
     public function store(Request $request)
     {
-        $bonusUsers = $request->input('data');        
+        $bonusUsers = $request->input('data');
         $users = DB::table('users')->get();          
         $currUserId = Auth::user()->id;
         foreach($users as $user) {
             $bono = 0;
-            foreach($bonusUsers as $bonus) {
-                if ((int)$bonus["user"] == $user->id) {
-                    $bono = $bonus['bonus'];
+            if ($bonusUsers != null) {
+                foreach($bonusUsers as $bonus) {
+                    if ((int)$bonus["user"] == $user->id) {
+                        $bono = $bonus['bonus'];
+                    }
                 }
-            }
+            }            
 
             DB::table('payroll')->insert([
                 'manager_id' => $currUserId,

@@ -1,9 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-<<<<<<< HEAD
-   
-=======
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-11" style="height: 200px;
@@ -49,7 +46,6 @@
             </div>
         </div>
     </div> 
->>>>>>> ba35b7d4033324b101d1377efebc955105e34a1a
 </div>
 
 @endsection

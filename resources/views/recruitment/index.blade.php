@@ -9,7 +9,9 @@
                         <div class="row">
                             <div class="col-md-7"></div>
                             <div class="col-md-2">
+                                @if(Auth::user()->role_id != 3)
                                 <a style="margin-bottom:10px;" class="btn btn-outline-secondary col-md-12" href="{{ action('RecruitmentController@create') }}">Add new</a>
+                                @endif
                             </div>                        
                         </div>
                     </div>

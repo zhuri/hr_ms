@@ -6,54 +6,20 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="header">
-                            <h4 class="title">New Recruitment</h4>
+                            <h4 class="title">New Department</h4>
                         </div>
                         <div class="content">
-                        <form action="{{action('RecruitmentController@store')}}" method="POST">
+                        <form action="{{action('DepartmentController@store')}}" method="POST">
                             {{ csrf_field() }}
                             @method('POST')
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="form-group">
-                                            <label>First name</label>
-                                        <input type="text" name="first_name" class="form-control" placeholder="First name" value="">
+                                            <label>Department name</label>
+                                        <input type="text" name="name" class="form-control" placeholder="Department name" value="">
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Last name</label>
-                                        <input type="text" name="last_name" class="form-control" placeholder="Last name" value="">
-                                        </div>
-                                    </div>                                       
-                                                               
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <select class="form-control select md-form" name="position_id">
-                                                <option value="" disabled selected>Position</option>
-                                                @foreach ($positions as $position)                                                    
-                                                    <option value="{{$position->id}}">{{$position->name}}</option>
-                                                @endforeach                                            
-                                        </select>
-                                    </div>  
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select class="form-control select md-form" name="status_id">
-                                                <option value="" disabled selected>Status</option>
-                                                @foreach ($statuses as $status)                                                    
-                                                    <option value="{{$status->id}}">{{$status->name}}</option>
-                                                @endforeach                                            
-                                            </select>
-                                        </div>
-                                    </div>                                                                  
-                                </div>                                
-                                <div class="row">                                    
-                                    <div class="form-group">
-                                        <label for="note">Notes</label>
-                                        <textarea name="notes" id="note" cols="100" rows="10"></textarea>
-                                    </div> 
-                                </div>                            
+                                                             
                                 <input type="submit" class="btn btn-info btn-fill pull-right"/>
                                 <div class="clearfix"></div>
                             </form>

@@ -33,13 +33,8 @@
                                             <td style="width:150px;">
                                                 <a href="{{ action('TaskController@show', $task->id) }}" class="btn btn-fill" style="background-color:#66b3ff; color:white;">Edit</a>
                                                 @if(Auth::user()->role_id != 3)
-<<<<<<< HEAD
-                                                <a href="{{ action('UserController@destroy', $task->id) }}" class="btn btn-fill" style="background-color:#d11a2a; color:white;">Delete</a>
-                                                @endif	
-=======
                                                 <a href="{{ action('TaskController@destroy', $task->id) }}" class="btn btn-fill" style="background-color:#d11a2a; color:white;">Delete</a>
                                                 @endif
->>>>>>> ba35b7d4033324b101d1377efebc955105e34a1a
                                             </td>                               
                                         </tr>
                                     @endforeach                               

@@ -7,31 +7,31 @@
                 <div class="">
                     <div class="header">
                         <div class="row">
+                            <div class="col-md-7"></div>
                             <div class="col-md-2">
-                                <a class="btn btn-default btn-block" href="{{ action('RecruitmentController@create') }}">Add new</a>
+                                
+                                <a style="margin-bottom:10px;" class="btn btn-outline-secondary col-md-12" href="{{ action('DepartmentController@create') }}">Add new</a>
+                                
                             </div>                        
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-10">
                         <div class="content table-responsive table-full-width">
                             <table class="table table-hover table-striped">
                                 <thead>                                
-                                    <th class="col-md-2">Status</th>
-                                    <th class="col-md-2">Applicant</th>
-                                    <th class="col-md-2">Position</th>
-                                    <th class="col-md-2">Date started</th>                                
-                                    <th>Operations</th>
+                                    <th >Id</th>
+                                    <th >Name</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($recruitments as $rec)
+                                    @foreach ($department as $dep)
                                         <tr>                                    
-                                            <td>{{$rec->status}}</td>
-                                            <td>{{$rec->first_name . " " . $rec->last_name}}</td>
-                                            <td>{{$rec->position}}</td>   
-                                            <td>{{$rec->created_at}}</td>     
-                                            <td>
-                                                <a href="{{ action('RecruitmentController@show', $rec->id) }}" class="btn btn-info btn-fill">Edit</a>
-                                                <a href="{{ action('RecruitmentController@destroy', $rec->id) }}" class="btn btn-danger btn-fill">Delete</a>
+                                            <td>{{$dep->id}}</td>
+                                            <td>{{$dep->name}}</td>   
+                                            <td style="width:150px;">
+                                                <a href="{{ action('DepartmentController@show', $dep->id) }}" class="btn btn-fill" style="background-color:#66b3ff; color:white;">Edit</a>
+                                                
+                                                <a href="{{ action('DepartmentController@destroy', $dep->id) }}" class="btn btn-fill" style="background-color:#d11a2a; color:white;">Delete</a>
+                                               
                                             </td>                               
                                         </tr>
                                     @endforeach                               
