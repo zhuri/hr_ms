@@ -1,3 +1,5 @@
+{{-- copied from tasks to be modified --}}
+
 @extends('layouts.app')
 @section('content')
 <div class="content">
@@ -7,32 +9,33 @@
                 <div class="">
                     <div class="header">
                         <div class="row">
-                            <div class="col-md-7"></div>
                             <div class="col-md-2">
-                                <a style="margin-bottom:10px;" class="btn btn-outline-secondary col-md-12" href="{{ action('RecruitmentController@create') }}">Add new</a>
+                                <a class="btn btn-default btn-block" href="{{ action('ReportController@create') }}">Add new report</a>
                             </div>                        
                         </div>
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <div class="content table-responsive table-full-width">
                             <table class="table table-hover table-striped">
                                 <thead>                                
-                                    <th >Status</th>
-                                    <th >Applicant</th>
-                                    <th >Position</th>
-                                    <th >Date started</th>                                
+                                    <th class="col-md-2">Name</th>
+                                    <th class="col-md-2">Description</th>
+                                    <th class="col-md-2">Department</th>
+                                    <th class="col-md-2">User</th>                                
                                     <th>Operations</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($recruitments as $rec)
+                                    @foreach ($reports as $report)
                                         <tr>                                    
-                                            <td>{{$rec->status}}</td>
-                                            <td>{{$rec->first_name . " " . $rec->last_name}}</td>
-                                            <td>{{$rec->position}}</td>   
-                                            <td>{{$rec->created_at}}</td>     
-                                            <td style="width:150px;">
-                                                <a href="{{ action('RecruitmentController@show', $rec->id) }}" class="btn btn-fill" style="background-color:#66b3ff; color:white;">Edit</a>
-                                                <a href="{{ action('RecruitmentController@destroy', $rec->id) }}" class="btn btn-fill" style="background-color:#d11a2a; color:white;">Delete</a>
+                                            <td>{{$report->name}}</td>
+                                            <td>{{$report->description}}</td>
+                                            <td>{{$report->department}}</td>   
+                                            <td>{{$report->email ? $task->email : ""}}</td>     
+                                            <td>
+                                                <a href="{{ action('ReportController@show', $report->id) }}" class="btn btn-info btn-fill">Edit</a>
+                                                @if(Auth::user()->role_id != 3)
+                                                <a href="{{ action('TaskController@destroy', $report->id) }}" class="btn btn-danger btn-fill">Delete</a>
+                                                @endif
                                             </td>                               
                                         </tr>
                                     @endforeach                               
@@ -43,12 +46,11 @@
                     <div class="col-md-4">
                         <div>
                             @include('partials.chat')
-                        </div>                        
+                        </div>
                     </div>
-                </div>                
+                </div>
             </div>                        
         </div>
     </div>
 </div>
-    
 @endsection
