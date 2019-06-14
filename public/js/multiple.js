@@ -28,7 +28,7 @@ $(document).ready(function () {
             var cols = "";
     
             cols += `<td>${$userSelect}</td>`;
-            cols += `<td><input type="text" placeholder="bonus" class="form-control" name="data[${counter}][bonus]"/></td>`;            
+            cols += `<td><div class="form-group"><input type="text" placeholder="bonus" class="form-control" name="data[${counter}][bonus]"/></div></td>`;            
     
             cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="Delete"></td>';
             newRow.append(cols);
