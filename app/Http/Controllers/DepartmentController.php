@@ -38,10 +38,7 @@ class DepartmentController extends Controller
     {
         $department = DB::table('department')->get();
         
-        return view('departments.create', [
-            'department' => $department,
-            
-        ]);
+        return view('departments.create');
     }
 
     public function store(Request $request)
