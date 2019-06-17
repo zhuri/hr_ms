@@ -93,7 +93,7 @@
                    <div>
                        <ul>
                            <li class="home-nav-item">
-                               <a href="" class="dashboard">
+                               <a href="http://127.0.0.1:8000/home" class="dashboard">
                                    <i class="fa fa-dashboard"></i>
                                    <span class="margin">  Dashboard</span>
                                </a>

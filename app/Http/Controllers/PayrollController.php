@@ -22,7 +22,7 @@ class PayrollController extends Controller
             ->join('users as u1', 'u1.id', '=', 'p.manager_id')
             ->join('users as u2', 'u2.id', '=', 'p.user_id')
             ->select('p.*', 'u1.name as manager', 'u2.name as user')
-            ->where('p.user_id', Auth::user()->id)
+            ->where('p.user_id', '=', Auth::user()->id)
             ->get();
         }
 
