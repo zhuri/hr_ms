@@ -78,7 +78,8 @@ Route::post('/departments', 'DepartmentController@store')->name('departments.sto
 Route::post('/departments/{id}', 'DepartmentController@update')->name('departments.update');
 Route::get('/departments/destroy/{id}', 'DepartmentController@destroy')->name('departments.destroy');
 
-Route::get('/report', 'ReportControllet@index')->name('reports.list');
-Route::get('/reports/create', 'ReportController@create')->name('reports.create');
+Route::get('/reports', 'ReportController@index')->name('reports.list');
+Route::get('/reports/create/new', 'ReportController@create')->name('reports.create');
 Route::get('/reports/{id}', 'ReportController@update')->name('reports.update');
 Route::get('/reports/destroy/{id}', 'ReportController@destroy')->name('reports.destroy');
+Route::post('/reports', 'ReportController@store')->name('reports.store');

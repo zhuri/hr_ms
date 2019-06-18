@@ -139,7 +139,7 @@
                                </a>
                            </li>
                            <li class="reports-nav-item">
-                               <a href="" class="reports">
+                               <a href="{{ url('/reports') }}" class="reports">
                                    <i class="fa fa-folder-o"></i>
                                     <span class="margin">Reports</span>
                                </a>
