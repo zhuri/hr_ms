@@ -11,10 +11,11 @@
                     </div>
                     <div class="col-md-10">
                         <div class="content table-responsive table-full-width">
-                            <table class="table table-hover table-striped">
+                        <input class="col-md-3" style="padding:5px 20px;" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+                            <table class="table table-hover table-striped" id="myTable">
                                 <thead>
                                     <th>ID</th>                                
-                                    <th>Name</th>
+                                    <th>Name </th>
                                     <th>Email</th>
                                     <th>Department</th>
                                     <th>Operations</th>
@@ -62,6 +63,5 @@
 
     </div>
 </div>
-
     
 @endsection

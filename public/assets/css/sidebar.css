@@ -1,11 +1,16 @@
+body{
+   background-color: white;
+}
 .container1{
     display: flex;
     margin: auto;
+    background-color: white;
  }
  
  .layout-nav{
      width: 16%;
      height:100%;
+     position: fixed;
      background-color: #fbfafa;
  }
  
@@ -43,6 +48,7 @@
      padding: 20px;
      width: 75%;
      height: auto;
+     
  }
  
  .layout-nav li:hover{

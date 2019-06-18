@@ -7,17 +7,18 @@
                 <div class="">
                     <div class="header">
                         <div class="row">
-                            <div class="col-md-7"></div>
+                            <div class="col-md-7" style="margin-bottom:10px;">
+                            <input class="col-md-5" style="padding:5px 20px;margin-bottom:18px;margin-left:15px;" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+                            </div>
                             <div class="col-md-2">
-                                @if(Auth::user()->role_id != 3)
-                                <a style="margin-bottom:10px;" class="btn btn-outline-secondary col-md-12" href="{{ action('RecruitmentController@create') }}">Add new</a>
-                                @endif
+                                <a style="" class="btn btn-outline-secondary col-md-12" href="{{ action('RecruitmentController@create') }}">Add new</a>
                             </div>                        
                         </div>
                     </div>
                     <div class="col-md-10">
                         <div class="content table-responsive table-full-width">
-                            <table class="table table-hover table-striped">
+                        
+                            <table class="table table-hover table-striped" id="myTable">
                                 <thead>                                
                                     <th >Status</th>
                                     <th >Applicant</th>
