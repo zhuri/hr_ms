@@ -29,7 +29,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($user_requests as $rec)
-                                        <tr>                                    
+                                        <tr data-toggle="modal" data-target="#myModal">                                    
                                             <td>{{$rec->type}}</td>
                                             <td>{{$rec->user}}</td>
                                             <td>{{$rec->date_from}}</td>   
@@ -46,7 +46,26 @@
                                                     <a href="{{ action('UserRequestController@destroy', $rec->id) }}" class="btn btn-fill" style="background-color:#d11a2a; color:white;">Delete</a>
                                                 @endif
                                                 @endif                                                
-                                            </td>                               
+                                            </td>
+                                            
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="myModal" role="dialog">
+                                                <div class="modal-dialog">
+                                                
+                                                <!-- Modal content-->
+                                                <div class="modal-content col-md-10" style="vertical-align:center;margin-top:15%;">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title col-md-10">{{$rec->user}}</h4>
+                                                        <button type="button" class="close col-md-2" data-dismiss="modal">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        <p></p>
+                                                    </div>
+                                                </div>
+                                                
+                                                </div>
+                                            </div>     
+                                            
                                         </tr>
                                     @endforeach                               
                                 </tbody>

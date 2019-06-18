@@ -43,7 +43,7 @@
                                     <div class="col-md-6">
                                             <div class="form-group1">
                                                 <label for="note">Details</label>
-                                                <textarea name="details" id="note" cols="100" rows="10" style="border-radius:1%;"></textarea>
+                                                <textarea name="details" id="note" cols="100" rows="5" style="border-radius:1%;"></textarea>
                                             </div>
                                     </div>  
                                 </div>                                                                                

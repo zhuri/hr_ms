@@ -199,7 +199,7 @@
                        </div>
                    </div>
                </div>
-               <div class="layout-main col-md-9 offset-md-2">
+               <div class="layout-main col-md-9 offset-md-2" style="">
                    <br>
                         @yield('content')
                </div>
