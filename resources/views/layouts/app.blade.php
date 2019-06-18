@@ -14,6 +14,7 @@
    <script src="{{ asset('js/jquery.3.2.1.min.js') }}" defer></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
    <script type="text/javascript" src="{{ asset('js/multiple.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('js/indexTable.js') }}"></script>
    
 
    <!-- Fonts -->
