@@ -9,7 +9,9 @@
                     <div class="row">
                             <div class="col-md-7"></div>
                             <div class="col-md-2">
-                            <a style="margin-bottom:10px;" class="btn btn-outline-success col-md-12" href="{{ action('PayrollController@create') }}">Generate for this month</a>
+                            @if(Auth::user()->role_id != 3)
+                                <a style="margin-bottom:10px;" class="btn btn-outline-success col-md-12" href="{{ action('PayrollController@create') }}">Generate for this month</a>
+                            @endif
                             </div>                        
                         </div>                 
                         </div>
