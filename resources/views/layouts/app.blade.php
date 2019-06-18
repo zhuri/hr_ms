@@ -34,12 +34,12 @@
    <link href="{{ asset('assets/css/pe-icon-7-stroke.css') }}" rel="stylesheet" />
    <link href="{{ asset('assets/css/login.css') }}" rel="stylesheet">
    <link href="{{ asset('assets/css/sidebar.css') }}" rel="stylesheet">
-   <link href="{{ asset('assets/css/create-edit.css') }}" rel="stylesheet">
+   <link href="{{ asset('assets/css/create-edit.css') }}" rel="stylesheet"> 
 </head>
 <body style="margin:0 auto;">
    <div id="app">
-   <div style="position: sticky;">
-       <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" >
+   <div class="h " id="myHeader" style="position: sticky;top: 0;z-index: 1;">
+       <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="background-color:white;" >
            <div class="container" style="display:flex;justify-content: flex-start;padding-right: 0;padding-left: 0;margin-right: 0px;margin-left: 5%;">
            
                <a class="col-md-11" href="{{ url('/home') }}" >
@@ -144,7 +144,7 @@
                             <li class="reports-nav-item">
                                 <a href="" class="reports">
                                     <i class="fa fa-folder-o"></i>
-    <span class="margin">Reports</span>
+                                    <span class="margin">Reports</span>
                                 </a>
                             </li>
                         </ul>
@@ -201,7 +201,7 @@
                </div>
                <div class="layout-main col-md-9 offset-md-2">
                    <br>
-                   @yield('content')
+                        @yield('content')
                </div>
            </div>
 
