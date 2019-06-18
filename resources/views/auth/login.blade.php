@@ -34,8 +34,8 @@
    <link href="{{ asset('assets/css/sidebar.css') }}" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <div class="wrapper">
+<div class="container" style="background-color: #ffffff;">
+    <div class="wrapper" style="background-color: #ffffff;">
         
         <div class="login-main">
             <div class="imgcontainer">

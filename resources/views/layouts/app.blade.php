@@ -37,16 +37,17 @@
 </head>
 <body style="margin:0 auto;">
    <div id="app">
-       <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-           <div class="container">
-               <a class="navbar-brand" href="{{ url('/home') }}" >
+   <div style="position: sticky;">
+       <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" >
+           <div class="container" style="display:flex;justify-content: flex-start;padding-right: 0;padding-left: 0;margin-right: 0px;margin-left: 5%;">
+           
+               <a class="col-md-11" href="{{ url('/home') }}" >
                <img src="{{ URL::to('/assets/img/logo_lab.png') }}" style="width:120px;">
                </a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                    <span class="navbar-toggler-icon"></span>
                </button>
-
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse col-md-1" id="navbarSupportedContent" >
                    <!-- Left Side Of Navbar -->
 
                    <!-- Right Side Of Navbar -->
@@ -86,105 +87,107 @@
                </div>
            </div>
        </nav>
-
-       <main class="py-4">
+</div>
+       <main class="">
            <div class="container1">
-               <div class="layout-nav" id="navbar">
-                   <div>
-                       <ul>
-                           <li class="home-nav-item">
-                               <a href="" class="dashboard">
-                                   <i class="fa fa-dashboard"></i>
-                                   <span class="margin">  Dashboard</span>
-                               </a>
-                           </li>
-                           <li class="manage-people-nav-item">
-                               <a href="{{ url('/users') }}" class="manage-people">
-                                   <i class='far fa-user-circle'></i>
-                                   <span class="margin">Users</span>
-                               </a>
-                           </li>
-                       </ul>
-                   </div>
-                   <div>
-                       <ul>
-                           <li class="run-payroll-nav-item">
-                               <a href="{{ url('/payrolls') }}" class="run-payroll">
-                                   <i class="fa fa-dollar"></i>
-                                   <span class="margin">Payroll</span>
-                               </a>
-                           </li>
-                           <!--
-                           <li class="pay-contractors-nav-item">
-                               <a href="" class="pay-contractors">
-                                   <i class="fa fa-money"></i>
-                                   <span class="margin">Pay Contractors</span>
-                               </a>
-                           </li>
-                           <li class="benefits-nav-item">
-                               <a href="" class="benefits">
-                                   <i class="fa fa-heart-o"></i>
-                                   <span class="margin">Benefits</span>
-                               </a>
-                           </li>
--->
-                       </ul>
-                   </div>
-                   <div>
-                       <ul>
-                           <li class="team-insights-nav-item">
-                               <a href="{{ url('/recruitments') }}" class="team-insights">
-                                   <i class="fa fa-bar-chart"></i>
-                                   <span class="margin">Recruitments</span>
-                               </a>
-                           </li>
-                           <li class="reports-nav-item">
-                               <a href="" class="reports">
-                                   <i class="fa fa-folder-o"></i>
-<span class="margin">Reports</span>
-                               </a>
-                           </li>
-                       </ul>
-                   </div>
-                   <div>
-                       <ul>
-                           <!--
-                           <li class="referrals-nav-item">
-                               <a href="" class="referrals">
-                                   <i class="fa fa-gift"></i>
-                                   <span class="margin">Referrals</span>
-                               </a>
-                           </li>
--->
-                           <li class="documents-nav-item">
-                               <a href="{{ url('/tasks') }}" class="documents">
-                                   <i class='far fa-file-alt'></i>
-                                   <span class="margin">Tasks</span>
-                               </a>
-                           </li>
-                           <li class="help-nav-item">
-                               <a href="{{ url('/user_requests') }}" class="help">
-                                   <i class='far fa-question-circle'></i>
-                                   <span class="margin">User Requests</span>
-                               </a>
-                           </li>
-                       </ul>
-                   </div>
-                   <div>
-                       <ul>
-                       <li class="company-details-nav-item">
-                               <a href="{{ url('/departments') }}" class="company-details">
-                                   <i class="fa fa-building-o"></i>
-                                   <span class="margin">Departments</span>
-                               </a>
-                           </li>
-                           <li class="company-details-nav-item">
-                               <a href="" class="company-details">
-                                   <i class="fa fa-building-o"></i>
-                                   <span class="margin">Position</span>
-                               </a>
-                           </li>
-                       </ul>
+               <div class="layout-nav col-md-2" id="navbar">
+                <div style="height:70%;">
+                    <div>
+                        <ul>
+                            <li class="home-nav-item">
+                                <a href="" class="dashboard">
+                                    <i class="fa fa-dashboard"></i>
+                                    <span class="margin">  Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="manage-people-nav-item">
+                                <a href="{{ url('/users') }}" class="manage-people">
+                                    <i class='far fa-user-circle'></i>
+                                    <span class="margin">Users</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="run-payroll-nav-item">
+                                <a href="{{ url('/payrolls') }}" class="run-payroll">
+                                    <i class="fa fa-dollar"></i>
+                                    <span class="margin">Payroll</span>
+                                </a>
+                            </li>
+                            <!--
+                            <li class="pay-contractors-nav-item">
+                                <a href="" class="pay-contractors">
+                                    <i class="fa fa-money"></i>
+                                    <span class="margin">Pay Contractors</span>
+                                </a>
+                            </li>
+                            <li class="benefits-nav-item">
+                                <a href="" class="benefits">
+                                    <i class="fa fa-heart-o"></i>
+                                    <span class="margin">Benefits</span>
+                                </a>
+                            </li>
+    -->
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li class="team-insights-nav-item">
+                                <a href="{{ url('/recruitments') }}" class="team-insights">
+                                    <i class="fa fa-bar-chart"></i>
+                                    <span class="margin">Recruitments</span>
+                                </a>
+                            </li>
+                            <li class="reports-nav-item">
+                                <a href="" class="reports">
+                                    <i class="fa fa-folder-o"></i>
+    <span class="margin">Reports</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <!--
+                            <li class="referrals-nav-item">
+                                <a href="" class="referrals">
+                                    <i class="fa fa-gift"></i>
+                                    <span class="margin">Referrals</span>
+                                </a>
+                            </li>
+    -->
+                            <li class="documents-nav-item">
+                                <a href="{{ url('/tasks') }}" class="documents">
+                                    <i class='far fa-file-alt'></i>
+                                    <span class="margin">Tasks</span>
+                                </a>
+                            </li>
+                            <li class="help-nav-item">
+                                <a href="{{ url('/user_requests') }}" class="help">
+                                    <i class='far fa-question-circle'></i>
+                                    <span class="margin">User Requests</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                        <li class="company-details-nav-item">
+                                <a href="{{ url('/departments') }}" class="company-details">
+                                    <i class="fa fa-building-o"></i>
+                                    <span class="margin">Departments</span>
+                                </a>
+                            </li>
+                            <li class="company-details-nav-item">
+                                <a href="" class="company-details">
+                                    <i class="fa fa-building-o"></i>
+                                    <span class="margin">Position</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                    </div>
                    <div class="layout-nav-footer">
                        <div>Secure Connection</div>
@@ -195,7 +198,7 @@
                        </div>
                    </div>
                </div>
-               <div class="layout-main">
+               <div class="layout-main col-md-9 offset-md-2">
                    <br>
                    @yield('content')
                </div>

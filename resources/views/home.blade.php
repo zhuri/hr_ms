@@ -6,6 +6,7 @@
             <div class="col-md-11" style="height: 200px;
                                           width: 800px;
                                           display: flex;
+                                          margin-top:50px;
                                           flex-direction: column;
                                           justify-content: center;
                                           content-align: center;
@@ -42,7 +43,7 @@
                                           justify-content: center;
                                           content-align: center;
                                           text-align: center;">
-            <p style="font-size: 15px;">You can check if you have any task to finish (<a href="/tasks">Tasks</a>), or take a look at the latest payroll (<a href="/payrolls">Payroll</a>).</p>
+            <p style="font-size: 15px;margin-top:100px;">You can check if you have any task to finish (<a href="/tasks">Tasks</a>), or take a look at the latest payroll (<a href="/payrolls">Payroll</a>).</p>
             </div>
         </div>
     </div> 
