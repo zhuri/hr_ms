@@ -11,9 +11,22 @@ use App\RecruitmentStatus;
 use App\User;
 use App\Role;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Service\MailService;
 
 class RecruitmentController extends Controller
 {
+    private $mailService;
+
+    public function __construct() {
+        $this->mailService = new MailService();
+    }
+
+    public function sendMail($email)
+    {
+        $this->mailService->send($email);
+        
+        return redirect('/recruitments');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +38,7 @@ class RecruitmentController extends Controller
         ->join('recruitment_status as rs', 'rs.id', '=', 'r.status_id')
         ->join('applicant as a', 'a.id', '=', 'r.applicant_id')
         ->join('positions as p', 'p.id', '=', 'a.position_id')
-        ->select('r.*', 'rs.name as status', 'a.first_name', 'a.last_name', 'p.name as position')
+        ->select('r.*', 'rs.name as status', 'a.first_name', 'a.last_name', 'a.personal_email as email','p.name as position')
         ->orderBy('updated_at', 'desc')
         ->get();
         
@@ -62,6 +75,7 @@ class RecruitmentController extends Controller
         $applicant->first_name = $request->input('first_name');
         $applicant->last_name = $request->input('last_name');
         $applicant->position_id = $request->input('position_id');
+        $applicant->personal_email = $request->input('email');
         $applicant->save();
 
         $recruitment = new Recruitment();

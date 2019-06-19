@@ -81,3 +81,6 @@ Route::get('/report', 'ReportControllet@index')->name('reports.list');
 Route::get('/reports/create', 'ReportController@create')->name('reports.create');
 Route::get('/reports/{id}', 'ReportController@update')->name('reports.update');
 Route::get('/reports/destroy/{id}', 'ReportController@destroy')->name('reports.destroy');
+
+
+Route::get('/recruitments/send/mail/{email}', 'RecruitmentController@sendMail')->name('recruitments.mail');

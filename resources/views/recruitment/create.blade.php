@@ -26,7 +26,15 @@
                                         <input type="text" name="last_name" class="form-control" placeholder="Last name" value="">
                                         </div>
                                     </div>                                       
-                                                               
+                                                   
+                                    
+                                    <div class="col-md-3">
+                                        <div class="form-group1">
+                                            <label>Email</label>
+                                        <input type="text" name="email" class="form-control" placeholder="blla@example.com" value="">
+                                        </div>
+                                    </div> 
+
                                 </div>
 
                                 <div class="row1">

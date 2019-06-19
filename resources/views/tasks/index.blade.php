@@ -27,8 +27,9 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($tasks as $task)
+                                    <?php $taskId = $task->id; ?>
                                      <!-- Modal -->
-                                    <div class="modal fade" id="myModal" role="dialog">
+                                    <div class="modal fade" id="myModal<?php echo $taskId ?>" role="dialog">
                                         <div class="modal-dialog">
                                         
                                         <!-- Modal content-->
@@ -44,7 +45,7 @@
                                         
                                         </div>
                                     </div>
-                                        <tr data-toggle="modal" data-target="#myModal">                                    
+                                        <tr data-toggle="modal" data-target="#myModal<?php echo $taskId ?>">                                    
                                             <td>{{$task->name}}</td>
                                             <td>{{$task->department}}</td>   
                                             <td>{{$task->email ? $task->email : ""}}</td>     
