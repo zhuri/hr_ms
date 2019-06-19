@@ -47,7 +47,7 @@
                                 <div class="row">                                    
                                     <div class="form-group">
                                         <label for="note">Notes</label>
-                                        <textarea name="notes" id="note" cols="100" rows="10">{{$recruitment->notes}}</textarea>
+                                        <textarea name="notes" id="note" cols="100" rows="5">{{$recruitment->notes}}</textarea>
                                     </div> 
                                 </div>                            
                                 <input type="submit" class="btn btn-info btn-fill pull-right"/>

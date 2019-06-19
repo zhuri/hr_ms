@@ -40,9 +40,9 @@ class PositionController extends Controller
     public function create()
     {        
         $position = DB::table('positions')->get();
-        return view('positions.create', [
-            'department' => $department,
-        ]);
+        return view('positions.create'
+            
+        );
     }
 
     /**
