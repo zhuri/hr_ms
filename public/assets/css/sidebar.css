@@ -51,9 +51,9 @@ body{
      
  }
  
- .layout-nav li:hover{
+ .layout-nav a:hover{
     color:black;
-    font-size:20px;
+    font-size:17px;
  }
  
  .layout-nav a:hover{
