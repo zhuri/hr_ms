@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -43,9 +44,9 @@ class DepartmentController extends Controller
 
     public function store(Request $request)
     {
-        $department = new Department();
-        $department->name = $request->input('name');
-        $department->save();
+        Department::updateOrCreate([
+            "name" => $request->input('name')
+        ]);
         
         return redirect('/departments');
     }
@@ -69,12 +70,11 @@ class DepartmentController extends Controller
         //
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         DB::table('department')->where('id', $id)
         ->update([
-            "name" => $request->input('name'),
-                      
+            "name" => $request->input('name'),        
         ]);
 
         return redirect('/departments');
@@ -86,10 +86,6 @@ class DepartmentController extends Controller
         if (Auth::user()->role_id != 3) {        
             $department->delete();
             return back();
-        }
-        if (Auth::user()->role_id == Role::$EMPLOYEE and role_id == Role::$MID_MANAGEMENT){
-            Session::flash('message', 'You cannot delete, you are an employee!'); 
-            Session::flash('alert-class', 'alert-danger');
         }
         return back();
     }
