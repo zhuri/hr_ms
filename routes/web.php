@@ -85,8 +85,8 @@ Route::get('/reports/destroy/{id}', 'ReportController@destroy')->name('reports.d
 Route::post('/reports', 'ReportController@store')->name('reports.store');
 
 Route::get('/positions', 'PositionController@index')->name('positions.list');
-Route::get('/positions/{id}', 'PositionController@show')->name('positions.get');
-Route::get('/positions/create/new', 'PositionController@create')->name('positions.create');
-Route::post('/positions', 'PositionController@store')->name('positions.store');
 Route::post('/positions/{id}', 'PositionController@update')->name('positions.update');
+Route::get('/positions/create', 'PositionController@create')->name('positions.create');
+Route::post('/positions', 'PositionController@store')->name('positions.store'); 
+Route::get('/positions/{id}', 'PositionController@show')->name('positions.get');
 Route::get('/positions/destroy/{id}', 'PositionController@destroy')->name('positions.destroy');

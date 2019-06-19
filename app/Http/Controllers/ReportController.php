@@ -19,11 +19,11 @@ class ReportController extends Controller
     public function index()
     {
         $report = DB::table('report')
-        ->get();
+                ->leftJoin('users', 'report.user_id', '=', 'users.id')
+                ->select('report.*','users.email as email')
+                ->get();
         
-        return view('reports.index', [
-            'reports' => $report
-        ]);
+                return view('reports.index', ['report' => $report]);
     }
     /**
      * Show the application dashboard.
@@ -37,11 +37,11 @@ class ReportController extends Controller
      */
     public function create()
     {        
-        $departments = DB::table('department')->get();
+        
         $users = DB::table('users')->get();
 
         return view('reports.create', [            
-            'departments' => $departments,
+            
             'users' => $users
         ]);
     }
@@ -56,22 +56,61 @@ class ReportController extends Controller
         Report::updateOrCreate([
             "name" => $request->input('name'),
             "description" => $request->input('description'),
-            "department_id" => $request->input('department'),
             "user_id" => $request->input('user'),
             
         ]);
         return redirect('/reports');
     }
+    public function show($id)
+    {   
+        $report = DB::table('report')
+            ->leftJoin('users', 'report.user_id', '=', 'users.id')
+            ->select('report.*','users.email as email')
+            ->where('report.id', $id)
+            ->first();
+
+        $users = DB::table('users')->get();
+
+        if(Auth::user()->role_id != 3) {
+            return view('reports.edit', [
+                'report' => $report,
+                'users' => $users
+            ]);
+        }
+        if(Auth::user()->role_id == 3 and user()->id == $task->user_id){
+            return view('reports.edit', [
+                'report' => $report,
+                'users' => $users
+            ]);
+        }
+        else {
+            Session::flash('message', 'You cannot delete, you are an employee!'); 
+            Session::flash('alert-class', 'alert-warning');
+        }
+        
+            
+    }
     public function update(Request $request, $id)
     {
-        DB::table('task')->where('id', $id)
+        DB::table('report')->where('id', $id)
         ->update([
             "name" => $request->input('name'),
             "description" => $request->input('description'),
-            "department_id" => $request->input('department'),
             "user_id" => $request->input('user')
         ]);
 
         return redirect()->action('ReportController@index');
+    }
+    public function destroy($id)
+    {
+        if (Auth::user()->role_id == Role::$HIGHER_MANAGEMENT or Auth::user()->role_id == Role::$MID_MANAGEMENT) {
+            $report = DB::table('report')->where('id', $id);
+            $report->delete();
+        }
+        // if (Auth::user()->role_id == Role::$EMPLOYEE){
+        //     Session::flash('message', 'You cannot delete, you are an employee!'); 
+        //     Session::flash('alert-class', 'alert-danger');
+        // }
+        return back();
     }
 }

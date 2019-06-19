@@ -1,4 +1,3 @@
-{{-- copied from tasks to be modified --}}
 @extends('layouts.app')
 @section('content')
 <div class="content">
@@ -15,12 +14,12 @@
                             {{ csrf_field() }}
                             @method('POST')
                                 <div class="row1">
-                                    <div class="col-md-5">
+                                    <!-- <div class="col-md-5">
                                         <div class="form-group1">
                                             <label>Name</label>
                                         <input type="text" name="name" class="form-control" placeholder="Company" value="">
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="col-md-3">
                                         <div class="form-group1">
                                             <label>Description</label>
@@ -32,11 +31,11 @@
                                 <div class="row1">
                                     <div class="col-md-6">
                                         <div class="form-group1">
-                                            <label>Department</label>
-                                            <select class="form-control select md-form" name="department">
-                                                <option value="" disabled selected>Department</option>
-                                                @foreach ($departments as $department)                                                    
-                                                    <option value="{{$department->id}}">{{$department->name}}</option>
+                                            <label>Report Type</label>
+                                            <select class="form-control select md-form" name="reporttype">
+                                                <option value="" disabled selected>ReportType</option>
+                                                @foreach ($reporttype as $reporttype)                                                    
+                                                    <option value="{{$reporttype->id}}">{{$reporttype->name}}</option>
                                                 @endforeach                                            
                                             </select>
                                         </div>
