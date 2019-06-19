@@ -18,11 +18,29 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')
-        ->join('department', 'users.department_id', '=', 'department.id')
-        ->select('users.*', 'department.name as department')
-        ->get();
-        
+        if(Auth::user()->role_id == Role::$HIGHER_MANAGEMENT){
+            $users = DB::table('users')
+            ->join('department', 'users.department_id', '=', 'department.id')
+            ->select('users.*', 'department.name as department')
+            ->get();
+        }
+
+        if(Auth::user()->role_id == Role::$MID_MANAGEMENT){
+            $users = DB::table('users')
+            ->join('department', 'users.department_id', '=', 'department.id')
+            ->select('users.*', 'department.name as department')
+            ->where('users.role_id', '!=', Role::$HIGHER_MANAGEMENT)
+            ->get();
+        }
+
+        if(Auth::user()->role_id == Role::$EMPLOYEE){
+            $users = DB::table('users')
+            ->join('department', 'users.department_id', '=', 'department.id')
+            ->select('users.*', 'department.name as department')
+            ->where('users.id', '=', Auth::user()->id)
+            ->get();
+        }
+
         return view('users.index', ['users' => $users]);
     }
 
@@ -134,6 +152,6 @@ class UserController extends Controller
             Session::flash('alert-class', 'alert-danger');
             return back();
         }
-        
+        return back();
     }
 }

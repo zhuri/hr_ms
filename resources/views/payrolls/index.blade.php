@@ -11,7 +11,9 @@
                             <input class="col-md-5" style="margin-left:15px;margin-bottom:18px;padding:5px 10px;" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for usernames.." title="Type in a name">
                             </div>
                             <div class="col-md-2">
-                            <a style="" class="btn btn-outline-success col-md-12" href="{{ action('PayrollController@create') }}">Generate for this month</a>
+                            @if(Auth::user()->role_id != 3)
+                                <a style="margin-bottom:10px;" class="btn btn-outline-success col-md-12" href="{{ action('PayrollController@create') }}">Generate for this month</a>
+                            @endif
                             </div>                        
                         </div>                 
                         </div>
