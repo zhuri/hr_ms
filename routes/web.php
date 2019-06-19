@@ -82,5 +82,12 @@ Route::get('/reports/create', 'ReportController@create')->name('reports.create')
 Route::get('/reports/{id}', 'ReportController@update')->name('reports.update');
 Route::get('/reports/destroy/{id}', 'ReportController@destroy')->name('reports.destroy');
 
+Route::get('/positions', 'PositionController@index')->name('positions.list');
+Route::get('/positions/{id}', 'PositionController@show')->name('positions.get');
+Route::get('/positions/create/new', 'PositionController@create')->name('positions.create');
+Route::post('/positions', 'PositionController@store')->name('positions.store');
+Route::post('/positions/{id}', 'PositionController@update')->name('positions.update');
+Route::post('/positions/destroy/{id}', 'PositionController@destroy')->name('positions.destroy');
+
 
 Route::get('/recruitments/send/mail/{email}', 'RecruitmentController@sendMail')->name('recruitments.mail');
