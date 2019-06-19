@@ -182,7 +182,7 @@
                                 </a>
                             </li>
                             <li class="company-details-nav-item">
-                                <a href="" class="company-details">
+                                <a href="{{ url('/positions') }}" class="company-details">
                                     <i class="fa fa-building-o"></i>
                                     <span class="margin">Position</span>
                                 </a>
