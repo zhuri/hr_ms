@@ -35,7 +35,7 @@
                                             <div class="modal-dialog">
                                             
                                             <!-- Modal content-->
-                                            <div class="modal-content col-md-10" style="vertical-align:center;padding-left:0px;padding-right:0px;border-radius:4px;">
+                                            <div class="modal-content col-md-10" style="vertical-align:center;padding-left:0px;padding-right:0px;border-radius:4px;margin-top:15%;">
                                                 <div class="modal-header" style="background-color: #fbfafa; color: gray;">
                                                     <h4 class="modal-title col-md-10"><?php echo strtoupper($rec->first_name . " " . $rec->last_name); ?></h4>
                                                     <button type="button" class="close col-md-2" data-dismiss="modal">&times;</button>
