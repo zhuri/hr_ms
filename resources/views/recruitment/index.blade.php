@@ -52,7 +52,7 @@
                                             <td data-toggle="modal" data-target="#myModal<?php echo $recId ?>">{{$rec->first_name . " " . $rec->last_name}}</td>
                                             <td>{{$rec->position}}</td>   
                                             <td>{{$rec->created_at}}</td>  
-                                            <td><a href="{{ action('RecruitmentController@sendMail', ['email' => $rec->email]) }}"><i class="fa fa-plus-circle" style="font-size:24px"></i></a></td>   
+                                            <td><a href="{{ action('RecruitmentController@sendMail', ['email' => $rec->email]) }}"><i class="fa fa-envelope" style="font-size:24px"></i></a></td>   
                                             <td style="width:150px;">
                                                 <a href="{{ action('RecruitmentController@show', $rec->id) }}" class="btn btn-fill" style="background-color:#66b3ff; color:white;">Edit</a>
                                                 <a href="{{ action('RecruitmentController@destroy', $rec->id) }}" class="btn btn-fill" style="background-color:#d11a2a; color:white;">Delete</a>

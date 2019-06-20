@@ -97,7 +97,7 @@
                     <div>
                         <ul>
                             <li class="home-nav-item">
-                                <a href="" class="dashboard">
+                                <a href="{{ url('/home') }}" class="dashboard">
                                     <i class="fa fa-dashboard"></i>
                                     <span class="margin">  Dashboard</span>
                                 </a>
@@ -183,9 +183,9 @@
                                 </a>
                             </li>
                             <li class="company-details-nav-item">
-                                <a href="" class="company-details">
+                                <a href="{{ url('/positions') }}" class="company-details">
                                     <i class="fa fa-building-o"></i>
-                                    <span class="margin">Position</span>
+                                    <span class="margin">Positions</span>
                                 </a>
                             </li>
                         </ul>
