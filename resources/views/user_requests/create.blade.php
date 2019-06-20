@@ -50,7 +50,8 @@
                                 <div class="row">
                                     <div class="col-md-2">
                                         <input style="margin-top:15px;" class="btn btn-outline-success col-md-12" type="submit">
-                                    </div>                        
+                                    </div>  
+                                                          
                                 </div>  
                                 <div class="clearfix"></div>
                             </form>
