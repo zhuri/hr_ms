@@ -23,7 +23,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group1">
                                             <label>Description</label>
-                                        <input type="text" name="description" class="form-control" placeholder="Username" value="">
+                                            <textarea name="description" id="note" cols="80" rows="5" style="border-radius:1%"></textarea>
                                         </div>
                                     </div>                                    
                                 </div>

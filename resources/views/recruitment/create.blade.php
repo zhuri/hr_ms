@@ -62,7 +62,7 @@
                                 <div class="row">                                    
                                     <div class="form-group1 note1">
                                         <label for="note">Notes</label>
-                                        <textarea name="notes" id="note" cols="100" rows="5" style="border-radius:1%"></textarea>
+                                        <textarea name="notes" id="note" cols="80" rows="5" style="border-radius:1%"></textarea>
                                     </div> 
                                 </div>
                                 <div class="row">

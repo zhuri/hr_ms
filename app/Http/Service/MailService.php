@@ -14,10 +14,21 @@ class MailService
 
         $mail = new PHPMailer(TRUE);
         try {
-            $mail->setFrom('rinorhajrizi1718@gmail.com', 'Rinor Hajrizi');
-            $mail->addAddress($emailTo, 'Rinor Hajrizi');
-            $mail->Subject = 'Endrit from PHP';
-            $mail->Body = 'Hey I am sending this email from PHP.';
+            $mail->setFrom('jehonaakonushefci@gmail.com', 'Human Resource Management System');
+            $mail->addAddress('rita.selimi@gmail.com', 'Applicant');
+            $mail->Subject = 'Offert letter';
+            $mail->Body = 'Dear Rita,
+
+            First of all, thank you for coming in for the interview, it was a pleasure meeting you.
+            We are pleased to inform you that we have decided to offer you the position of Intern with Software Developers Team at UCX Kosovo.
+            
+            Attached you can find your internship offer.
+            Please feel free to contact me if you need any further information.
+            
+            Looking forward to hearing from you.
+            
+            Best regards,
+            Office Manager ';
 
             /* SMTP parameters. */
 
@@ -34,10 +45,10 @@ class MailService
             $mail->SMTPSecure = 'tls';
 
             /* SMTP authentication username. */
-            $mail->Username = 'rinorhajrizi1718@gmail.com';
+            $mail->Username = 'jehonaakonushefci@gmail.com';
 
             /* SMTP authentication password. */
-            $mail->Password = 'kselqupqcjstzqol';
+            $mail->Password = 'rgffnrxsryheafyc';
 
             /* Set the SMTP port. */
             $mail->Port = 587;
