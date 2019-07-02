@@ -28,5 +28,5 @@ class DepartmentController extends Controller
 
         $department->save();
         return redirect('/departments');
-    }    
+    }
 }

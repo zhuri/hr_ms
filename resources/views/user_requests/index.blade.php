@@ -29,9 +29,10 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($user_requests as $rec)
-                                        <tr data-toggle="modal" data-target="#myModal">                                    
+                                    <?php $recId = $rec->id; ?>
+                                        <tr>                                    
                                             <td>{{$rec->type}}</td>
-                                            <td>{{$rec->user}}</td>
+                                            <td data-toggle="modal" data-target="#myModal<?php echo $recId ?>">{{$rec->user}}</td>
                                             <td>{{$rec->date_from}}</td>   
                                             <td>{{$rec->date_to}}</td>     
                                             <td>{{$rec->created_at}}</td>   
@@ -49,17 +50,17 @@
                                             </td>
                                             
                                             <!-- Modal -->
-                                            <div class="modal fade" id="myModal" role="dialog">
+                                            <div class="modal fade" id="myModal<?php echo $recId ?>" role="dialog">
                                                 <div class="modal-dialog">
                                                 
                                                 <!-- Modal content-->
-                                                <div class="modal-content col-md-10" style="vertical-align:center;margin-top:15%;">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title col-md-10">{{$rec->user}}</h4>
+                                                <div class="modal-content col-md-10" style="vertical-align:center;padding-left:0px;padding-right:0px;border-radius:4px;margin-top:15%;">
+                                                    <div class="modal-header" style="background-color: #fbfafa; color: gray;">
+                                                        <h4 class="modal-title col-md-10"><?php echo strtoupper($rec->user); ?></h4>
                                                         <button type="button" class="close col-md-2" data-dismiss="modal">&times;</button>
                                                         </div>
                                                         <div class="modal-body">
-                                                        <p></p>
+                                                        <p>{{$rec->details}}</p>
                                                     </div>
                                                 </div>
                                                 

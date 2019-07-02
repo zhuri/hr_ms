@@ -43,14 +43,15 @@
                                     <div class="col-md-6">
                                             <div class="form-group1">
                                                 <label for="note">Details</label>
-                                                <textarea name="details" id="note" cols="100" rows="5" style="border-radius:1%;"></textarea>
+                                                <textarea name="details" id="note" cols="80" rows="5" style="border-radius:1%;"></textarea>
                                             </div>
                                     </div>  
                                 </div>                                                                                
                                 <div class="row">
                                     <div class="col-md-2">
                                         <input style="margin-top:15px;" class="btn btn-outline-success col-md-12" type="submit">
-                                    </div>                        
+                                    </div>  
+                                                          
                                 </div>  
                                 <div class="clearfix"></div>
                             </form>

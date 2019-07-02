@@ -33,20 +33,21 @@
                                         <div class="modal-dialog">
                                         
                                         <!-- Modal content-->
-                                        <div class="modal-content col-md-10" style="vertical-align:center;margin-top:15%;">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title col-md-10">{{$task->name}}</h4>
+                                        <div class="modal-content col-md-10" style="vertical-align:center;padding-left:0px;padding-right:0px;border-radius:4px;margin-top:15%;">
+                                            <div class="modal-header" style="background-color: #fbfafa; color: gray;">
+                                                <h4 class="modal-title col-md-10"><?php echo strtoupper($task->name); ?></h4>
                                                 <button type="button" class="close col-md-2" data-dismiss="modal">&times;</button>
                                                 </div>
                                                 <div class="modal-body">
-                                                <p>{{$task->description}}</p>
+                                                    
+                                                    <p>{{$task->description}}</p>
                                             </div>
                                         </div>
                                         
                                         </div>
                                     </div>
-                                        <tr data-toggle="modal" data-target="#myModal<?php echo $taskId ?>">                                    
-                                            <td>{{$task->name}}</td>
+                                        <tr>                                    
+                                            <td data-toggle="modal" data-target="#myModal<?php echo $taskId ?>">{{$task->name}}</td>
                                             <td>{{$task->department}}</td>   
                                             <td>{{$task->email ? $task->email : ""}}</td>     
                                             <td style="width:150px;">

@@ -7,13 +7,15 @@
                 <div class="">
                     <div class="header">
                         <div class="row">
-                            <div class="col-md-7" style="margin-bottom:10px;">                            
+                        <div class="col-md-7" style="margin-bottom:13px;">
+                            <input class="col-md-6" style="margin-left:15px;margin-bottom:20px;padding:5px 10px;" type="text" id="myInput" onkeyup="myFunction2()" placeholder="Search for position.." title="Type in a name">
                             </div>
                             <div class="col-md-2">
-                                <a style="" class="btn btn-outline-secondary col-md-12" href="{{ action('PositionController@create') }}">Add new</a>
+                            <a style="" class="btn btn-outline-secondary col-md-12" href="{{ action('PositionController@create') }}">Add new</a>
                             </div>                        
                         </div>
                     </div>
+                    </div>    
                     <div class="col-md-10">
                         <div class="content table-responsive table-full-width">
                         
