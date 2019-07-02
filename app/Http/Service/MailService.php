@@ -8,7 +8,6 @@ class MailService
 {
     const BLLA = 1;
     public function send($emailTo)
-    {       
         $mail = new PHPMailer(TRUE);
         try {
             $mail->setFrom('jehonaakonushefci@gmail.com', 'Human Resource Management System');
