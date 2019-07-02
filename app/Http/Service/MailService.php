@@ -8,16 +8,13 @@ class MailService
 {
     const BLLA = 1;
     public function send($emailTo)
-    {
-        // dd($from, $to);
-        //to be written here
-
+    {       
         $mail = new PHPMailer(TRUE);
         try {
             $mail->setFrom('jehonaakonushefci@gmail.com', 'Human Resource Management System');
-            $mail->addAddress('rita.selimi@gmail.com', 'Applicant');
-            $mail->Subject = 'Offert letter';
-            $mail->Body = 'Dear Rita,
+            $mail->addAddress($emailTo, 'Applicant');
+            $mail->Subject = 'Offer letter';
+            $mail->Body = 'Dear Applicant,
 
             First of all, thank you for coming in for the interview, it was a pleasure meeting you.
             We are pleased to inform you that we have decided to offer you the position of Intern with Software Developers Team at UCX Kosovo.
