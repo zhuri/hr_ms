@@ -58,6 +58,11 @@
                                 </div>
                                 <div class="clearfix"></div>
                             </form>
+                            <form action="{{action('UserController@updatePassword')}}" method="POST">         
+                                {{ csrf_field() }}                       
+                                <input type="text" name="user_id" class="form-control" placeholder="Email" value="{{ $users->id }}">
+                                <input style="margin-top:15px;" class="btn btn-outline-success col-md-12" type="submit">
+                            </form>
                         </div>
                     </div>
                 </div>

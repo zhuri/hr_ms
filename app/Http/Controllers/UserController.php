@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Role;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -42,6 +44,16 @@ class UserController extends Controller
         }
 
         return view('users.index', ['users' => $users]);
+    }
+
+    public function updatePassword(Request $request) 
+    {
+        $user_id = $request->input('user_id');
+        DB::table('users')->where('id', $user_id)
+        ->update([
+            "password" => Hash::make('endrit123')            
+        ]);
+        return Redirect::back();
     }
 
     /**

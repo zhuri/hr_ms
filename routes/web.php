@@ -36,6 +36,7 @@ Route::post('/users/{id}', 'UserController@update')->name('users.update');
 Route::post('/users', 'UserController@store')->name('users.store');
 Route::get('/users/{id}', 'UserController@show')->name('users.get');
 Route::get('/users/destroy/{id}', 'UserController@destroy')->name('users.destroy');
+Route::post('/users/update/password', 'UserController@updatePassword')->name('users.update.password');
 
 
 
